@@ -1,10 +1,9 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import Container from './components/layout/container'
+import App from './components/layout/app'
 
-Container()
 
 ReactDOM.render(
-    <h1>СУПЕР</h1>,
+    <App/>,
     document.getElementById('root')
 )
