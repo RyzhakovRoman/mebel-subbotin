@@ -1,0 +1,10 @@
+{
+  "useTabs": false, // не используем табы
+  "printWidth": 80, // длина строки - 80
+  "tabWidth": 4, // длина "таба" - 4 пробела
+  "singleQuote": true, // использовать одинарные кавычки
+  "trailingComma": "es5", // запятая в последней строке - да
+  "jsxBracketSameLine": false, // закрывающийся jsx в этой же строке
+  "parser": "flow", // парсер - flow (пока не важно)
+  "semi": false // точка с запятой - нет
+}

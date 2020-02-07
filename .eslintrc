@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "standard-with-typescript",
+    "prettier"
+  ],
+  "rules": {
+    "jsx-quotes": [
+      1,
+      "prefer-double"
+    ],
+    "indent": ["error", 4],
+    "@typescript-eslint/indent": ["error", 4],
+    "@typescript-eslint/space-before-function-paren": ["error", "never"]
+//    "indent": [2, 4]
+  },
+  "plugins": [
+    "prettier"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

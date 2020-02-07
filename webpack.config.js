@@ -1,9 +1,12 @@
-// const React = require('react')
-// const ReactDOM = require('react-dom')
-const webpack = require('webpack')
-const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const
+    webpack = require('webpack'),
+    path = require('path'),
+    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'),
+    webpackDevServer = require('webpack-dev-server')
 
+// webpackDevServer.listen
 
 module.exports = (env = {}) => {
     /**
@@ -23,18 +26,18 @@ module.exports = (env = {}) => {
         /**
          * Указываем где контекст точкам входа
          */
-        context: path.resolve(__dirname, './js'),
+        // context: path.resolve(__dirname, './dist'),
         /**
          * Точка входа в приложение
          */
         entry: {
-            index: './index'
+            index: './src/js/index'
         },
         /**
          * Точка сборки
          */
         output: {
-            path: path.resolve(__dirname, './dist/js'),
+            path: path.resolve(__dirname, './dist'),
             filename: `[name]${ENV_IS_DEV ? '.dev' : ''}.js`,
             /**
              * Указываем публичную директорию
@@ -44,10 +47,45 @@ module.exports = (env = {}) => {
         },
         module: {
             rules: [
+                // {
+                //     test: /\.tsx?$/,
+                //     use: 'ts-loader',
+                //     exclude: /node_modules/
+                // },
                 {
-                    test: /\.tsx?$/,
-                    use: 'ts-loader',
-                    exclude: /node_modules/
+                    test: /\.(j|t)sx?$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            cacheDirectory: true,
+                            babelrc: false,
+                            presets: [
+                                [
+                                    '@babel/preset-env',
+                                    { targets: { browsers: 'last 2 versions' } } // or whatever your project requires
+                                ],
+                                '@babel/preset-typescript',
+                                '@babel/preset-react'
+                            ],
+                            plugins: [
+                                // plugin-proposal-decorators is only needed if you're using experimental decorators in TypeScript
+                                ['@babel/plugin-proposal-decorators', { legacy: true }],
+                                ['@babel/plugin-proposal-class-properties', { loose: true }],
+                                ['@babel/plugin-transform-runtime'],
+                                'react-hot-loader/babel'
+                            ]
+                        }
+                    }
+                },
+                {
+                    test: /\.(html)$/,
+                    use: {
+                        loader: 'html-loader',
+                        options: {
+                            interpolate: true
+                        }
+                    }
                 },
                 {
                     test: /\.less?$/,
@@ -70,7 +108,7 @@ module.exports = (env = {}) => {
              * Говорим вебпаку с какими расширениями
              * модули ему искать
              */
-            extensions: ['.tsx', '.ts', '.js', '.jsx'],
+            extensions: ['.tsx', '.ts', '.js', '.jsx', '.html'],
         },
         optimization: {
             splitChunks: {
@@ -106,18 +144,28 @@ module.exports = (env = {}) => {
             /**
              * Делаем исключение модулей из сборки
              */
-             new webpack.ContextReplacementPlugin(
-                 /moment[/\\]locale$/,
-                 /ru/
-             ),
-
-            new MiniCssExtractPlugin({})
+            new webpack.ContextReplacementPlugin(
+                /moment[/\\]locale$/,
+                /ru/
+            ),
+            new HtmlWebpackPlugin({
+                template: './index.html',
+                // chunks: ['index']
+            }),
+            new ScriptExtHtmlWebpackPlugin({
+                defaultAttribute: 'defer'
+            }),
+            new MiniCssExtractPlugin({}),
         ],
         /**
          * Для формирования корректного source-map,
          * есть несколько значений,
          * по дефолту eval - самая быстая сборка и пересборка
          */
-        devtool: 'source-map'
+        devtool: 'source-map',
+        devServer: {
+            contentBase: './',
+            hot: true
+        }
     }
 }

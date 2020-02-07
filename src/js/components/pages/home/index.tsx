@@ -5,6 +5,8 @@ export default function Home() {
     return (
         <div>
             <h2>Главная</h2>
+
+            контент главной
         </div>
     )
 }
