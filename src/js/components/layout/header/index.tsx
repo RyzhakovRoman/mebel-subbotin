@@ -1,25 +1,24 @@
 import * as React from 'react'
-import {Link} from 'react-router-dom'
-import {R} from '../../../navigation/routes'
+import {ReactElement} from 'react'
+import MainMenu from '../main-menu'
 
-
-export default function Header() {
+export default function Header(): ReactElement {
     return (
         <header>
-            <ul>
-                <li>
-                    <Link to={R.HOME}>Главная</Link>
-                </li>
-                <li>
-                    <Link to={R.CATALOG}>Каталог</Link>
-                </li>
-                <li>
-                    <Link to={R.ABOUT}>О компании</Link>
-                </li>
-                <li>
-                    <Link to={R.DELIVERY}>Доставка</Link>
-                </li>
-            </ul>
+            <MainMenu />
         </header>
     )
 }
+
+// {/*<ul>*/}
+// {/*    <li>*/}
+// {/*        <Link to={`${R.CATALOG}/beds/detskie`}>*/}
+// {/*            Детские*/}
+// {/*        </Link>*/}
+// {/*    </li>*/}
+// {/*    <li>*/}
+// {/*        <Link to={`${R.CATALOG}/beds/odnospalnie`}>*/}
+// {/*            Односпальные*/}
+// {/*        </Link>*/}
+// {/*    </li>*/}
+// {/*</ul>*/}

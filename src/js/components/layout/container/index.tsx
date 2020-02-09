@@ -1,12 +1,9 @@
-import Row from 'antd/lib/row'
-import 'antd/lib/row/style'
-import Col from 'antd/lib/col'
-import 'antd/lib/col/style'
+import * as React from 'react'
+import {ReactElement} from 'react'
+import './index.less'
 
-
-const Container = () => {
-console.log(Row)
-console.log(Col)
+function Container({children}): ReactElement {
+    return <div className={'container'}>{children}</div>
 }
 
 export default Container

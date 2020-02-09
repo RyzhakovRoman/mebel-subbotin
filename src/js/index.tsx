@@ -4,21 +4,16 @@ import * as ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import App from './components/layout/app'
 import store from './store/store'
+import {ReactElement} from 'react'
 
+const Root = hot(RootApp)
 
-const
-    Root = hot(RootApp),
-    Component = 'df'
-
-function RootApp() {
+function RootApp(): ReactElement {
     return (
         <Provider store={store}>
-            <App/>
+            <App />
         </Provider>
     )
 }
 
-ReactDOM.render(
-    <Root/>,
-    document.getElementById('root')
-)
+ReactDOM.render(<Root />, document.getElementById('root'))

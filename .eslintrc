@@ -1,22 +1,36 @@
 {
   "extends": [
     "standard-with-typescript",
+    "plugin:react/recommended",
+    "prettier/@typescript-eslint",
     "prettier"
   ],
   "rules": {
-    "jsx-quotes": [
-      1,
-      "prefer-double"
-    ],
-    "indent": ["error", 4],
+    "one-var": ["error", "always"],
+    "indent": ["error", 4, {"SwitchCase":  1}],
     "@typescript-eslint/indent": ["error", 4],
-    "@typescript-eslint/space-before-function-paren": ["error", "never"]
-//    "indent": [2, 4]
+    "@typescript-eslint/member-delimiter-style": ["error", {
+      "multiline": {
+        "delimiter": "semi",
+        "requireLast": true
+      },
+      "singleline": {
+        "delimiter": "semi",
+        "requireLast": false
+      }
+    }],
+    "@typescript-eslint/space-before-function-paren": ["error", "never"],
+    "react/prop-types": "off"
   },
   "plugins": [
-    "prettier"
+    "prettier",
+    "react-hooks"
   ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   }
 }

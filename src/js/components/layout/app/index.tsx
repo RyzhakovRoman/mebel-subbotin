@@ -3,15 +3,14 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import Header from '../header'
 import Main from '../main'
 import './index.less'
+import {ReactElement} from 'react'
 
-export default
-function App() {
+export default function App(): ReactElement {
     return (
         <Router>
             <h1>Top Application</h1>
-            <input type='text'/>
-            <Header/>
-            <Main/>
+            <Header />
+            <Main />
         </Router>
     )
 }

@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux'
-import beds from './beds'
-
+import list from './list'
+import listRequestStatus from './listRequestStatus'
 
 export default combineReducers({
-    beds
+    list,
+    listRequestStatus,
+    // filters
 })

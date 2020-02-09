@@ -1,11 +1,11 @@
 import T from '../actionTypes'
-import {ProductInterface} from '../../types/models'
+import {ProductBriefInterface} from '../../types/models'
 import {
+    LoadMoreProductsSuccessActionInterface,
     LoadProductsErrorActionInterface,
     LoadProductsStartedActionInterface,
-    LoadProductsSuccessActionInterface
+    LoadProductsSuccessActionInterface,
 } from '../../types/actions'
-
 
 export function loadProductsStarted(): LoadProductsStartedActionInterface {
     return {
@@ -13,10 +13,21 @@ export function loadProductsStarted(): LoadProductsStartedActionInterface {
     }
 }
 
-export function loadProductsSuccess(products: ProductInterface[]): LoadProductsSuccessActionInterface {
+export function loadProductsSuccess(
+    products: ProductBriefInterface[]
+): LoadProductsSuccessActionInterface {
     return {
         type: T.LOAD_PRODUCTS_SUCCESS,
-        products
+        products,
+    }
+}
+
+export function loadMoreProductsSuccess(
+    products: ProductBriefInterface[]
+): LoadMoreProductsSuccessActionInterface {
+    return {
+        type: T.LOAD_MORE_PRODUCTS_SUCCESS,
+        products,
     }
 }
 
