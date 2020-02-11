@@ -4,8 +4,6 @@ const webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 
-// webpackDevServer.listen
-
 module.exports = (env = {}) => {
     /**
      * Вытаскиваем переменную из запуска процесса

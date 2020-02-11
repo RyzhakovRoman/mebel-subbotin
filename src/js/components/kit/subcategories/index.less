@@ -1,0 +1,20 @@
+@import "../../style/default";
+
+.subcategories {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    height: @button-height;
+    margin: 0 1rem 1rem 0;
+    padding: 0 @button-padding-horizontal .1rem @button-padding-horizontal;
+    border: 1px solid @primary-color;
+    border-radius: @button-height / 2;
+    color: @primary-color;
+    font-size: 1rem;
+  }
+}

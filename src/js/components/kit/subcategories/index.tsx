@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {ReactElement} from 'react'
-import CATALOG_CATEGORIES from '../../../../navigation/catalogCategories'
+import CATALOG_CATEGORIES from '../../../navigation/catalogCategories'
 import {useParams} from 'react-router'
 import {Link} from 'react-router-dom'
-import {R} from '../../../../navigation/routes'
+import {R} from '../../../navigation/routes'
 import './index.less'
 
 export default function Subcategories(): ReactElement {

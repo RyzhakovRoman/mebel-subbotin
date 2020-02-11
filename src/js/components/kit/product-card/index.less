@@ -1,0 +1,46 @@
+@import "../../style/default";
+
+@product-card-border-radius: .6rem;
+
+.product-card {
+  border: 1px solid @light-gray;
+  border-radius: @product-card-border-radius;
+
+  &__img {
+    display: block;
+    width: 90%;
+    margin: -1.15rem auto 0 auto;
+    border: 1px solid @light-gray;
+    border-radius: @product-card-border-radius;
+    box-shadow: 0 6px 20px -14px rgba(0, 0, 0, 0.75);
+    transition: all .3s ease;
+  }
+
+  &__name {
+    text-align: center;
+    margin: 0;
+    padding: .6rem 5%;
+    font-size: 1.125rem;
+    color: @primary-color;
+
+    &:first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__button {
+    display: block;
+    margin: 0 auto 1rem;
+  }
+
+  &__cost {
+
+  }
+
+  &:hover {
+    .product-card__img {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.75);
+    }
+  }
+}

@@ -11,7 +11,7 @@ import {getProducts} from '../../../../store/actions/actionCreatorsForRequest'
 import Button from '../../../kit/button'
 import Container from '../../../layout/container'
 import {PaginationInterface} from '../../../../store/types'
-import Subcategories from '../subcategories'
+import Subcategories from '../../../kit/subcategories'
 import ProductCard from '../../../kit/product-card'
 import CATALOG_CATEGORIES from '../../../../navigation/catalogCategories'
 
@@ -53,23 +53,33 @@ export default function Catalog(): ReactElement {
                 <Row gutter={56}>
                     <Col sm={18}>
                         Перечисление товаров
-                        <ul>
+                        <br />
+                        <br />
+                        <Row gutter={[24, 64]} type={'flex'}>
                             {products.map(product => (
-                                <li key={product.name}>
+                                <Col sm={8} key={product.name}>
                                     <ProductCard {...product} />
-                                </li>
+                                </Col>
                             ))}
-                        </ul>
-                        <Button
-                            text={'Загрузить еще'}
-                            onClick={() => {
-                                dispatch(
-                                    getProducts(category, subcategory, {
-                                        pagination,
-                                    })
-                                )
-                            }}
-                        />
+
+                            <Col
+                                sm={24}
+                                key={'btn'}
+                                style={{textAlign: 'center'}}
+                            >
+                                <Button
+                                    text={'Загрузить еще'}
+                                    onClick={() => {
+                                        console.log('Загрузить еще')
+                                        dispatch(
+                                            getProducts(category, subcategory, {
+                                                pagination,
+                                            })
+                                        )
+                                    }}
+                                />
+                            </Col>
+                        </Row>
                     </Col>
                     <Col sm={6}>
                         <Subcategories />
@@ -79,6 +89,16 @@ export default function Catalog(): ReactElement {
         </div>
     )
 }
+
+/*
+<ul style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between',padding: 0, listStyle: 'none'}}>
+    {products.map(product => (
+        <li key={product.name} style={{width: '32%'}}>
+            <ProductCard {...product} />
+        </li>
+    ))}
+</ul>
+*/
 
 // function Comp(): ReactElement {
 //     const {category} = useParams(),

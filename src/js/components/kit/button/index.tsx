@@ -4,15 +4,17 @@ import './index.less'
 
 interface ButtonPropsInterface {
     text: string;
+    className?: string;
     onClick?: (e?: SyntheticEvent) => void;
 }
 
 const Button: FunctionComponent<ButtonPropsInterface> = ({
     text,
+    className,
     onClick,
 }): ReactElement => {
     return (
-        <button className={'button'} onClick={onClick}>
+        <button className={`button ${className}`} onClick={onClick}>
             {text}
         </button>
     )
