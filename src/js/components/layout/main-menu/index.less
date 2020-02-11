@@ -1,0 +1,39 @@
+@import "../../style/default";
+
+.main-menu {
+  width: 100%;
+  border-bottom: 1px solid @light-gray;
+  border-top: 1px solid @light-gray;
+
+  &__items {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+
+  }
+
+  &__link {
+    display: inline-block;
+    padding: .8rem;
+    color: @text-color;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transition: all .2s;
+
+    &_active {
+
+    }
+
+    &:hover {
+      color: @text-color;
+      border-bottom: 2px solid @primary-color;
+    }
+  }
+}

@@ -12,7 +12,7 @@
     margin: -1.15rem auto 0 auto;
     border: 1px solid @light-gray;
     border-radius: @product-card-border-radius;
-    box-shadow: 0 6px 20px -14px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 6px 14px -14px rgba(0, 0, 0, 0.75);
     transition: all .3s ease;
   }
 
@@ -33,14 +33,32 @@
     margin: 0 auto 1rem;
   }
 
-  &__cost {
+  &__costs {
+    text-align: center;
+  }
 
+  &__cost {
+    display: inline-block;
+    font-size: 1.125rem;
+
+    &_canceled {
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        top: 50%;
+        background-color: @text-color;
+      }
+    }
   }
 
   &:hover {
     .product-card__img {
       transform: translateY(-10px);
-      box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.75);
+      box-shadow: 0 10px 16px -12px rgba(0, 0, 0, 0.75);
     }
   }
 }

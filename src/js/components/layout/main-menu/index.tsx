@@ -1,8 +1,10 @@
 import * as React from 'react'
+import {ReactElement} from 'react'
 import {Link} from 'react-router-dom'
 import {R} from '../../../navigation/routes'
-import {ReactElement} from 'react'
 import CATALOG_CATEGORIES from '../../../navigation/catalogCategories'
+import Container from '../container'
+import './index.less'
 
 const categories = []
 
@@ -22,25 +24,37 @@ for (const category in CATALOG_CATEGORIES) {
 
 export default function MainMenu(): ReactElement {
     return (
-        <header>
-            <ul>
-                <li>
-                    <Link to={R.HOME}>Главная</Link>
-                </li>
-                <li>
-                    <Link to={R.CATALOG}>Каталог</Link>
-                    <ol>{categories}</ol>
-                </li>
-                <li>
-                    <Link to={R.ABOUT}>О компании</Link>
-                </li>
-                <li>
-                    <Link to={R.DELIVERY}>Доставка</Link>
-                </li>
-                <li>
-                    <Link to={'/notfound'}>Несуществующая страница</Link>
-                </li>
-            </ul>
-        </header>
+        <div className={'main-menu'}>
+            <Container>
+                <ul className={'main-menu__items'}>
+                    <li className={'main-menu__item'}>
+                        <Link to={R.HOME} className={'main-menu__link'}>
+                            Главная
+                        </Link>
+                    </li>
+                    <li className={'main-menu__item'}>
+                        <Link to={R.CATALOG} className={'main-menu__link'}>
+                            Каталог
+                        </Link>
+                        <ol style={{position: 'absolute'}}>{categories}</ol>
+                    </li>
+                    <li className={'main-menu__item'}>
+                        <Link to={R.ABOUT} className={'main-menu__link'}>
+                            О компании
+                        </Link>
+                    </li>
+                    <li className={'main-menu__item'}>
+                        <Link to={R.DELIVERY} className={'main-menu__link'}>
+                            Доставка
+                        </Link>
+                    </li>
+                    <li className={'main-menu__item'}>
+                        <Link to={'/notfound'} className={'main-menu__link'}>
+                            Несуществующая страница
+                        </Link>
+                    </li>
+                </ul>
+            </Container>
+        </div>
     )
 }

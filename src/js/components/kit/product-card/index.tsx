@@ -8,22 +8,23 @@ interface ProductCardInterface extends ProductBriefInterface {
     j?: string; // todo - hreni
 }
 
-const blockName = 'product-card',
-    ProductCard: FunctionComponent<ProductCardInterface> = ({
-        name,
-        imgLink,
-    }) => {
-        return (
-            <div className={blockName}>
-                <img className={`${blockName}__img`} src={imgLink} alt={name} />
-                <p className={`${blockName}__name`}>{name}</p>
-                <p>10 000 руб.</p>
-                <Button
-                    text={'Добавить в корзину'}
-                    className={`${blockName}__button`}
-                />
-            </div>
-        )
-    }
+const ProductCard: FunctionComponent<ProductCardInterface> = ({
+    name,
+    imgLink,
+}) => {
+    return (
+        <div className={'product-card'}>
+            <img className={`product-card__img`} src={imgLink} alt={name} />
+            <p className={`product-card__name`}>{name}</p>
+            <p className={'product-card__costs'}>
+                <span className={'product-card__cost'}>10 000</span>
+            </p>
+            <Button
+                text={'Добавить в корзину'}
+                className={`product-card__button`}
+            />
+        </div>
+    )
+}
 
 export default ProductCard
