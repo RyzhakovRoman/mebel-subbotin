@@ -8,7 +8,7 @@
     "start:dev": "webpack-dev-server --config webpack.config.js --open --hot --env",
     "eslint": "./node_modules/.bin/eslint --ext .tsx,.ts src --max-warnings=0",
     "eslint:write": "./node_modules/.bin/eslint --ext .tsx,.ts src --fix",
-    "prettier:write": "./node_modules/.bin/prettier --write \"src/**/*.{tsx,ts}\""
+    "prettier:write": "prettier --write \"src/**/*.{tsx,ts}\""
   },
   "repository": {
     "type": "git",
@@ -83,7 +83,7 @@
     }
   },
   "lint-staged": {
-    "*.{js, jsx, ts, tsx}": [
+    "*.{ts, tsx}": [
       "npm run eslint:write",
       "npm run prettier:write",
       "git add"

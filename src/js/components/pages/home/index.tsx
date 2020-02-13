@@ -12,8 +12,7 @@ export default function Home(): ReactElement {
                 <h1 style={{textAlign: 'center', marginTop: '.6rem'}}>
                     Мебель из Мурома на заказ
                 </h1>
-            </Container>{' '}
-            <br />
+            </Container>
             <Button text={'First Button'} />
         </>
     )
