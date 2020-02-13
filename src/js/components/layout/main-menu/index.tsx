@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import {R} from '../../../navigation/routes'
 import Container from '../container'
 import './index.less'
+import getListOfCategories from '../../../helpers/getListOfCategories'
 
 export default function MainMenu(): ReactElement {
     return (
@@ -19,6 +20,9 @@ export default function MainMenu(): ReactElement {
                         <Link to={R.CATALOG} className={'main-menu__link'}>
                             Каталог
                         </Link>
+                        <ul className={'main-submenu main-menu__main-submenu'}>
+                            {getListOfCategories('', 'main-submenu__link')}
+                        </ul>
                     </li>
                     <li className={'main-menu__item'}>
                         <Link to={R.ABOUT} className={'main-menu__link'}>

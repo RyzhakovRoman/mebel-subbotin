@@ -14,6 +14,14 @@
   }
 
   &__item {
+    &:hover {
+      .main-menu__main-submenu {
+        display: flex;
+      }
+    }
+  }
+
+  &__main-submenu {
 
   }
 
@@ -39,5 +47,22 @@
       color: @text-color;
       border-bottom: 2px solid @primary-color;
     }
+  }
+}
+
+.main-submenu {
+  display: none;
+  position: absolute;
+  justify-content: center;
+  width: 100%;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  list-style: none;
+
+  &__link {
+    display: block;
+    padding: .8rem;
   }
 }

@@ -5,8 +5,8 @@ import {R} from '../navigation/routes'
 import {ReactElement} from 'react'
 
 export default function getListOfCategories(
-    classForItem: string,
-    classForLink: string
+    classForItem?: string,
+    classForLink?: string
 ): ReactElement[] {
     const categories = []
 

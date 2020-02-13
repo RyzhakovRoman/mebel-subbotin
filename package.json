@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "start": "webpack --config webpack.config.js --env",
     "start:dev": "webpack-dev-server --config webpack.config.js --open --hot --env",
     "eslint": "./node_modules/.bin/eslint --ext .tsx,.ts src --max-warnings=0",
@@ -35,6 +36,7 @@
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
+    "@types/jest": "^25.1.2",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
     "@types/react-redux": "^7.1.7",
@@ -61,6 +63,7 @@
     "html-webpack-plugin": "^3.2.0",
     "husky": "^4.2.1",
     "i": "^0.3.6",
+    "jest": "^25.1.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lint-staged": "^10.0.7",
