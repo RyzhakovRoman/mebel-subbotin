@@ -106,6 +106,17 @@ module.exports = (env = {}) => {
                             },
                         ],
                     },
+                    {
+                        test: /\.(png|jpe?g|jpg|woff)$/,
+                        use: [
+                            {
+                                loader: 'file-loader',
+                                options: {
+                                    name: '[path][hash].[ext]'
+                                }
+                            }
+                        ]
+                    }
                 ],
             },
             resolve: {

@@ -1,6 +1,40 @@
+@import "../../../style/default";
+
 .main-banner {
+  min-height: 500px;
+  background: url(../../../../../img/main-banner/bg_sale.jpg);
+  background-size: cover;
+  background-position-y: 67%;
 
   &__categories {
+    min-width: 200px;
+    margin: 4rem 0 0 0;
+    padding: 0 1rem;
+    list-style: none;
+    background-color: @white;
+    border: 1px solid @light-gray;
+    box-shadow: 0 10px 16px -12px rgba(0, 0, 0, 0.75);
+  }
 
+  &__category {
+
+    &:last-child {
+      .main-banner__category-link {
+        border: 0;
+      }
+    }
+  }
+
+  &__category-link {
+    display: flex;
+    align-items: center;
+    min-height: 3rem;
+    padding: 0 1rem;
+    border-bottom: 1px solid @light-gray;
+    color: @text-color;
+
+    &:first-letter {
+      text-transform: uppercase;
+    }
   }
 }

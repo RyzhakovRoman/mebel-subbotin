@@ -43,6 +43,14 @@ const CATALOG_CATEGORIES: CatalogCategoriesInterface = {
             },
         },
     },
+    shkafy: {
+        h1: 'Шкафы',
+        nameForLink: 'Шкафы',
+    },
+    tumby: {
+        h1: 'Тумбы',
+        nameForLink: 'Тумбы',
+    },
     stoly: {
         h1: 'Столы',
         nameForLink: 'Столы',
@@ -57,9 +65,9 @@ const CATALOG_CATEGORIES: CatalogCategoriesInterface = {
             },
         },
     },
-    tumby: {
-        h1: 'Тумбы',
-        nameForLink: 'Тумбы',
+    stulya: {
+        h1: 'Стулья',
+        nameForLink: 'Стулья',
     },
 }
 
