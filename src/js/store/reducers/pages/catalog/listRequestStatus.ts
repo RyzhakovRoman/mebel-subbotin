@@ -2,7 +2,7 @@ import T from '../../../actions/actionTypes'
 import {RequestStatusType} from '../../../types'
 import {LoadProductsActionType} from '../../../types/actions'
 
-const initialState: RequestStatusType = 'didNotLoad'
+export const initialState: RequestStatusType = 'didNotLoad'
 
 function listRequestStatus(
     state = initialState,

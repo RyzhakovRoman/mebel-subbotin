@@ -7,14 +7,6 @@ import products from '../../../server-fake-data/products'
 import {PaginationInterface} from '../../types'
 import {ProductBriefInterface} from '../../types/models'
 
-// export function getProducts(dispatch): void {
-//     dispatch(loadProductsStarted())
-//
-//     setTimeout(() => {
-//         dispatch(loadProductsSuccess(products))
-//     }, 3000)
-// }
-
 const defaultFilters = {
     pagination: {
         start: 0,
