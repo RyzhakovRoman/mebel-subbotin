@@ -4,3 +4,5 @@ export interface ProductBriefInterface {
     imgLink: string;
     cost?: string;
 }
+
+export type ProductInterface = ProductBriefInterface

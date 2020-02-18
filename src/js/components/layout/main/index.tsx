@@ -7,11 +7,15 @@ import About from '../../pages/about'
 import Catalog from '../../pages/catalog/main'
 import {R} from '../../../navigation/routes'
 import NotFound from '../../pages/not-found'
+import Product from '../../pages/product'
 
 export default function Main(): ReactElement {
     return (
         <main>
             <Switch>
+                <Route path={R.CATALOG_CATEGORY + '/product-:id'}>
+                    <Product />
+                </Route>
                 <Route
                     path={[R.CATALOG_CATEGORY_SUBCATEGORY, R.CATALOG_CATEGORY]}
                 >

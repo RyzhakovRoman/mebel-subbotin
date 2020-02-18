@@ -1,7 +1,9 @@
 import T from '../actions/actionTypes'
-import {ProductBriefInterface} from './models'
+import {ProductBriefInterface, ProductInterface} from './models'
 
 // todo - Написать дренериками тип категории
+// Загрузка продуктов
+
 export interface LoadProductsStartedActionInterface {
     type: T.LOAD_PRODUCTS_STARTED;
 }
@@ -24,3 +26,23 @@ export type LoadProductsActionType =
     | LoadProductsSuccessActionInterface
     | LoadMoreProductsSuccessActionInterface
     | LoadProductsErrorActionInterface
+
+// Загрузка одного продукта
+
+export interface LoadProductStartedActionInterface {
+    type: T.LOAD_PRODUCT_STARTED;
+}
+
+export interface LoadProductSuccessActionInterface {
+    type: T.LOAD_PRODUCT_SUCCESS;
+    product: ProductInterface;
+}
+
+export interface LoadProductErrorActionInterface {
+    type: T.LOAD_PRODUCT_ERROR;
+}
+
+export type LoadProductActionType =
+    | LoadProductStartedActionInterface
+    | LoadProductSuccessActionInterface
+    | LoadProductErrorActionInterface

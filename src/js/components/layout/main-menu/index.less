@@ -1,6 +1,7 @@
 @import "../../style/default";
 
 .main-menu {
+  position: relative;
   width: 100%;
   border-bottom: 1px solid @light-gray;
   border-top: 1px solid @light-gray;
@@ -22,12 +23,13 @@
   }
 
   &__main-submenu {
-
+    //margin-top: 1px;
   }
 
   &__link {
     display: inline-block;
-    padding: .8rem;
+    padding: .8rem 1rem;
+    font-size: 1.125rem;
     color: @text-color;
     border-top: 2px solid #fff;
     border-bottom: 2px solid transparent;
@@ -60,9 +62,20 @@
   margin: 0;
   background: #fff;
   list-style: none;
+  box-shadow: 0 10px 16px -12px rgba(0, 0, 0, 0.5);
 
   &__link {
     display: block;
-    padding: .8rem;
+    padding: .8rem 2rem;
+    font-size: 1.125rem;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transition: all .2s;
+
+    &:hover {
+      border-bottom: 2px solid @primary-color;
+    }
   }
 }

@@ -1,18 +1,25 @@
 import {
+    loadProductsError,
     // loadMoreProductsSuccess,
     loadProductsStarted,
     loadProductsSuccess,
 } from '../actionCreators/products'
 // import products from '../../../server-fake-data/products'
 import {PaginationInterface} from '../../types'
-import {ProductBriefInterface} from '../../types/models'
+import {ProductBriefInterface, ProductInterface} from '../../types/models'
+import {
+    loadProductError,
+    loadProductStarted,
+    loadProductSuccess,
+} from '../actionCreators/product'
 
 const defaultFilters = {
-    pagination: {
-        start: 0,
-        limit: 10,
+        pagination: {
+            start: 0,
+            limit: 10,
+        },
     },
-}
+    DOMEN = 'http://5e497669728fde0014e351a9.mockapi.io'
 
 interface FiltersInterface {
     pagination: PaginationInterface;
@@ -24,17 +31,32 @@ export const getProducts = (
     subcategory: string = '',
     filters: FiltersInterface = defaultFilters
 ): any => {
-    console.log(subcategory)
     return async dispatch => {
         console.log('getProducts ', category, subcategory, filters)
         dispatch(loadProductsStarted())
-        return fetch('http://5e497669728fde0014e351a9.mockapi.io/products', {
+        return fetch(`${DOMEN}/products`, {
             method: 'GET',
         })
             .then(async response => response.json())
             .then((data: ProductBriefInterface[]) => {
                 dispatch(loadProductsSuccess(data))
             })
+            .catch(() => dispatch(loadProductsError()))
+    }
+}
+
+// eslint-disable-next-line one-var
+export const getProduct = (id: string): any => {
+    return async dispatch => {
+        dispatch(loadProductStarted())
+        return fetch(`${DOMEN}/products/${id}`, {
+            method: 'GET',
+        })
+            .then(async response => response.json())
+            .then((data: ProductInterface) => {
+                dispatch(loadProductSuccess(data))
+            })
+            .catch(() => dispatch(loadProductError()))
     }
 }
 
