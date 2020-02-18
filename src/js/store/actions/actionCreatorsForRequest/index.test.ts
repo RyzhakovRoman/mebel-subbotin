@@ -8,8 +8,10 @@ import T from '../actionTypes'
 const middlewares = [thunk],
     mockStore = configureMockStore(middlewares)
 
-// todo - Добавить тестирование запроса с ошибкой
-//  и переобозвать наименования тестов
+/*
+ todo - Добавить тестирование запроса с ошибкой
+  и переобозвать наименования тестов
+*/
 
 describe('Асинхронные действия', () => {
     afterEach(() => {
@@ -70,7 +72,7 @@ describe('Асинхронные действия', () => {
                 ],
                 store = mockStore({product: null})
 
-            return store.dispatch(getProduct(1)).then(() => {
+            return store.dispatch(getProduct('1')).then(() => {
                 expect(store.getActions()).toEqual(expectedActions)
             })
         })
@@ -86,7 +88,7 @@ describe('Асинхронные действия', () => {
                 ],
                 store = mockStore({product: null})
 
-            return store.dispatch(getProduct(1)).then(() => {
+            return store.dispatch(getProduct('1')).then(() => {
                 expect(store.getActions()).toEqual(expectedActions)
             })
         })

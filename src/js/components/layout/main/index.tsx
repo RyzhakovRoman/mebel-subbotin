@@ -1,11 +1,11 @@
 import {ReactElement} from 'react'
 import * as React from 'react'
 import {Route, Switch} from 'react-router-dom'
+import {R} from '../../../navigation/routes'
 import Home from '../../pages/home'
 import Delivery from '../../pages/delivery'
 import About from '../../pages/about'
 import Catalog from '../../pages/catalog/main'
-import {R} from '../../../navigation/routes'
 import NotFound from '../../pages/not-found'
 import Product from '../../pages/product'
 
