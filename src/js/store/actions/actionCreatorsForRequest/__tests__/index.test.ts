@@ -2,8 +2,8 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 // @ts-ignore
 import fetchMock from 'fetch-mock'
-import {getProduct, getProducts} from './index'
-import T from '../actionTypes'
+import {getProduct, getProducts} from '../index'
+import T from '../../actionTypes'
 
 const middlewares = [thunk],
     mockStore = configureMockStore(middlewares)

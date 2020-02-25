@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {FunctionComponent} from 'react'
-import {ProductBriefInterface} from '../../../store/types/models'
+import {ProductBriefInterface} from '../../../types/models'
 import Button from '../button'
 import './index.less'
 

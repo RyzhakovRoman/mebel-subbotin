@@ -1,4 +1,4 @@
-import {ProductBriefInterface} from '../store/types/models'
+import {ProductBriefInterface} from '../types/models'
 
 const products: ProductBriefInterface[] = [
     {
@@ -6,24 +6,28 @@ const products: ProductBriefInterface[] = [
         name: 'some name 0',
         imgLink:
             'https://hoff.ru//upload/iblock/dd7/dd78564f3018444166c690dd71fdf8ed.jpg',
+        cost: '10 000',
     },
     {
         id: 1,
         name: 'some name 1',
         imgLink:
             'https://hoff.ru//upload/iblock/dd7/dd78564f3018444166c690dd71fdf8ed.jpg',
+        cost: '10 000',
     },
     {
         id: 2,
         name: 'some name 2',
         imgLink:
             'https://hoff.ru//upload/iblock/dd7/dd78564f3018444166c690dd71fdf8ed.jpg',
+        cost: '10 000',
     },
     {
         id: 3,
         name: 'some name 3',
         imgLink:
             'https://hoff.ru//upload/iblock/dd7/dd78564f3018444166c690dd71fdf8ed.jpg',
+        cost: '10 000',
     },
     {
         id: 4,

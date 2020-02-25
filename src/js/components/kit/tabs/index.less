@@ -1,0 +1,26 @@
+@import "../../style/default";
+
+.tabs {
+  &__panel {
+    display: none;
+    padding-top: 1rem;
+
+    &_active {
+      display: block;
+    }
+  }
+}
+
+.tab {
+  min-height: 2rem;
+  padding-left: .8rem;
+  padding-right: .8rem;
+
+  &_active {
+    border-bottom: @primary-color 2px solid;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -1,6 +1,6 @@
 import T from '../../../actions/actionTypes'
-import {RequestStatusType} from '../../../types'
-import {LoadProductsActionType} from '../../../types/actions'
+import {RequestStatusType} from '../../../../types'
+import {LoadProductsActionType} from '../../../../types/actions'
 
 export const initialState: RequestStatusType = 'didNotLoad'
 

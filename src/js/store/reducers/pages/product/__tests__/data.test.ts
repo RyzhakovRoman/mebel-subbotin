@@ -1,10 +1,10 @@
-import {ProductInterface} from '../../../types/models'
+import {ProductInterface} from '../../../../../types/models'
 import {
     LoadProductStartedActionInterface,
     LoadProductSuccessActionInterface,
-} from '../../../types/actions'
-import T from '../../../actions/actionTypes'
-import data from '../product/data'
+} from '../../../../../types/actions'
+import T from '../../../../actions/actionTypes'
+import data from '../data'
 
 describe('Тестирование загрузки данных продукта', () => {
     const product: ProductInterface = {

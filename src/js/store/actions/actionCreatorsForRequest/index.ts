@@ -5,13 +5,14 @@ import {
     loadProductsSuccess,
 } from '../actionCreators/products'
 // import products from '../../../server-fake-data/products'
-import {PaginationInterface} from '../../types'
-import {ProductBriefInterface, ProductInterface} from '../../types/models'
+import {PaginationInterface} from '../../../types'
+import {ProductBriefInterface, ProductInterface} from '../../../types/models'
 import {
     loadProductError,
     loadProductStarted,
     loadProductSuccess,
 } from '../actionCreators/product'
+import products from '../../../server-fake-data/products'
 
 const defaultFilters = {
         pagination: {
@@ -49,14 +50,17 @@ export const getProducts = (
 export const getProduct = (id: string): any => {
     return async dispatch => {
         dispatch(loadProductStarted())
-        return fetch(`${DOMEN}/products/${id}`, {
-            method: 'GET',
-        })
-            .then(async response => response.json())
-            .then((data: ProductInterface) => {
-                dispatch(loadProductSuccess(data))
-            })
-            .catch(() => dispatch(loadProductError()))
+
+        dispatch(loadProductSuccess(products[0]))
+
+        // return fetch(`${DOMEN}/products/${id}`, {
+        //     method: 'GET',
+        // })
+        //     .then(async response => response.json())
+        //     .then((data: ProductInterface) => {
+        //         dispatch(loadProductSuccess(data))
+        //     })
+        //     .catch(() => dispatch(loadProductError()))
     }
 }
 

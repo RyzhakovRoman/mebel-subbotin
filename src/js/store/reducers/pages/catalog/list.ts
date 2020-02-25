@@ -1,6 +1,6 @@
 import T from '../../../actions/actionTypes'
-import {LoadProductsActionType} from '../../../types/actions'
-import {ProductBriefInterface} from '../../../types/models'
+import {LoadProductsActionType} from '../../../../types/actions'
+import {ProductBriefInterface} from '../../../../types/models'
 
 export const initialState: ProductBriefInterface[] = []
 

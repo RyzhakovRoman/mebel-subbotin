@@ -1,11 +1,11 @@
-import listRequestStatus, {initialState} from './listRequestStatus'
+import listRequestStatus, {initialState} from '../listRequestStatus'
 import {
     LoadMoreProductsSuccessActionInterface,
     LoadProductsErrorActionInterface,
     LoadProductsStartedActionInterface,
     LoadProductsSuccessActionInterface,
-} from '../../../types/actions'
-import T from '../../../actions/actionTypes'
+} from '../../../../../types/actions'
+import T from '../../../../actions/actionTypes'
 
 test('Проставление статуса начала загрузки продукции', () => {
     const action: LoadProductsStartedActionInterface = {

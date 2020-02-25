@@ -1,6 +1,6 @@
 import T from '../../../actions/actionTypes'
-import {LoadProductActionType} from '../../../types/actions'
-import {ProductInterface} from '../../../types/models'
+import {LoadProductActionType} from '../../../../types/actions'
+import {ProductInterface} from '../../../../types/models'
 
 export const initialState: ProductInterface = null
 

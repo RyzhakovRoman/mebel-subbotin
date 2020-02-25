@@ -2,9 +2,9 @@ import {
     LoadProductStartedActionInterface,
     LoadProductSuccessActionInterface,
     LoadProductErrorActionInterface,
-} from '../../../types/actions'
-import T from '../../../actions/actionTypes'
-import dataRequestStatus, {initialState} from '../product/dataRequestStatus'
+} from '../../../../../types/actions'
+import T from '../../../../actions/actionTypes'
+import dataRequestStatus, {initialState} from '../dataRequestStatus'
 
 describe('Тестирование статуса загрузки данных продукта', () => {
     test('Проставление статуса начала загрузки', () => {

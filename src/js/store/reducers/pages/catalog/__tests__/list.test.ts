@@ -1,12 +1,12 @@
-import list from './list'
-import T from '../../../actions/actionTypes/index'
+import list from '../list'
+import T from '../../../../actions/actionTypes'
 import {
     LoadMoreProductsSuccessActionInterface,
     LoadProductsStartedActionInterface,
     LoadProductsSuccessActionInterface,
-} from '../../../types/actions'
-import {ProductBriefInterface} from '../../../types/models'
-import products from '../../../../server-fake-data/products'
+} from '../../../../../types/actions'
+import {ProductBriefInterface} from '../../../../../types/models'
+import products from '../../../../../server-fake-data/products'
 
 test('Обнуление списка продуктов в начале загрузки', () => {
     const state: ProductBriefInterface[] = products,

@@ -1,11 +1,11 @@
 import T from '../actionTypes'
-import {ProductBriefInterface} from '../../types/models'
+import {ProductBriefInterface} from '../../../types/models'
 import {
     LoadMoreProductsSuccessActionInterface,
     LoadProductsErrorActionInterface,
     LoadProductsStartedActionInterface,
     LoadProductsSuccessActionInterface,
-} from '../../types/actions'
+} from '../../../types/actions'
 
 export function loadProductsStarted(): LoadProductsStartedActionInterface {
     return {

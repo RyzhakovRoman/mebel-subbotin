@@ -10,10 +10,12 @@ import {RootStateType} from '../../../../store/reducers'
 import {getProducts} from '../../../../store/actions/actionCreatorsForRequest'
 import Button from '../../../kit/button'
 import Container from '../../../layout/container'
-import {PaginationInterface} from '../../../../store/types'
+import {PaginationInterface} from '../../../../types'
 import Subcategories from '../../../kit/subcategories'
 import ProductCard from '../../../kit/product-card'
 import CATALOG_CATEGORIES from '../../../../navigation/catalogCategories'
+import {Range} from '../../../kit/range'
+import {Sorting} from '../sorting'
 
 function getHeading(category, subcategory): string {
     const categoryInfo = CATALOG_CATEGORIES[category]
@@ -54,6 +56,7 @@ export default function Catalog(): ReactElement {
                     <Col sm={18}>
                         Перечисление товаров
                         <br />
+                        <Sorting />
                         <br />
                         <Row gutter={[24, 64]} type={'flex'}>
                             {products.map(product => (
@@ -83,6 +86,7 @@ export default function Catalog(): ReactElement {
                     </Col>
                     <Col sm={6}>
                         <Subcategories />
+                        <Range />
                     </Col>
                 </Row>
             </Container>

@@ -16,6 +16,8 @@ interface ImgPickerPropsInterface {
   не перерендеривались при увеличении
 */
 
+let i = 0
+
 export default function ImgPicker({
     images,
 }: ImgPickerPropsInterface): ReactElement {
@@ -29,11 +31,18 @@ export default function ImgPicker({
             <Col sm={24}>
                 <Row gutter={12}>
                     {images.map(imgUrl => {
+                        const activeClass =
+                            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+                            showImgUrl === imgUrl &&
+                            'img-picker__img-wrapper_active'
+
                         return (
-                            <Col sm={6} key={imgUrl}>
+                            <Col sm={6} key={imgUrl + i++}>
                                 <div
                                     className={
-                                        'img-picker__img-wrapper img-picker__img-wrapper_small'
+                                        'img-picker__img-wrapper ' +
+                                        'img-picker__img-wrapper_small ' +
+                                        activeClass
                                     }
                                     onClick={() => setShowImgId(imgUrl)}
                                 >

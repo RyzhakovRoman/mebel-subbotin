@@ -8,6 +8,7 @@ import MainMenu from '../main-menu'
 import Container from '../container'
 import './index.less'
 import {PHONE, PHONE_HREF} from '../../constants'
+import {BasketWidget} from '../basket-widget'
 
 export default function Header(): ReactElement {
     return (
@@ -22,7 +23,9 @@ export default function Header(): ReactElement {
                             {PHONE}
                         </a>
                     </Col>
-                    <Col>Корзина</Col>
+                    <Col>
+                        <BasketWidget />
+                    </Col>
                 </Row>
             </Container>
             <MainMenu />

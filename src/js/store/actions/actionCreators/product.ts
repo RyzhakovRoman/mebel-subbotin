@@ -1,10 +1,10 @@
 import T from '../actionTypes'
-import {ProductInterface} from '../../types/models'
+import {ProductInterface} from '../../../types/models'
 import {
     LoadProductErrorActionInterface,
     LoadProductStartedActionInterface,
     LoadProductSuccessActionInterface,
-} from '../../types/actions'
+} from '../../../types/actions'
 
 export function loadProductStarted(): LoadProductStartedActionInterface {
     return {
