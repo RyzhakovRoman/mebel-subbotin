@@ -61,7 +61,7 @@ export interface AddProductToBasketActionInterface {
 
 export interface DeleteProductFromBasketActionInterface {
     type: T.DELETE_PRODUCT_FROM_BASKET;
-    productId: string;
+    productId: number;
 }
 
 export type BasketActionType =

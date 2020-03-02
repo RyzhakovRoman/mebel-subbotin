@@ -1,17 +1,28 @@
-import {ProductInterface} from '../../../types/models'
-import {BasketActionType} from '../../../types/actions'
-import T from '../../actions/actionTypes'
+import basket from '../index'
+import {
+    AddProductToBasketActionInterface,
+    DeleteProductFromBasketActionInterface,
+} from '../../../../types/actions'
+import T from '../../../actions/actionTypes'
+import products from '../../../../server-fake-data/products'
+import {ProductInterface} from '../../../../types/models'
 
-export const initialState: ProductInterface[] = []
+describe('Редуктор корзины', () => {
+    test('Должен обработать добавление товара в корзину', () => {
+        const prevState: ProductInterface[] = [products[4]],
+            action: AddProductToBasketActionInterface = {
+                type: T.ADD_PRODUCT_TO_BASKET,
+                product: products[0],
+            }
+        expect(basket(prevState, action)).toEqual([products[4], products[0]])
+    })
 
-export default function basket(
-    state: ProductInterface[] = initialState,
-    action: BasketActionType
-) {
-    switch (action.type) {
-        case T.ADD_PRODUCT_TO_BASKET:
-
-        default:
-            return state
-    }
-}
+    test('Должен обработать удаление товара из корзины', () => {
+        const prevState = [products[4], products[2]],
+            action: DeleteProductFromBasketActionInterface = {
+                type: T.DELETE_PRODUCT_FROM_BASKET,
+                productId: 2,
+            }
+        expect(basket(prevState, action)).toEqual([products[4]])
+    })
+})

@@ -5,4 +5,6 @@ export interface ProductBriefInterface {
     cost?: string;
 }
 
-export type ProductInterface = ProductBriefInterface
+export interface ProductInterface extends ProductBriefInterface {
+    a?: string;
+}

@@ -34,6 +34,7 @@ const products: ProductBriefInterface[] = [
         name: 'some name 4',
         imgLink:
             'https://hoff.ru//upload/iblock/dd7/dd78564f3018444166c690dd71fdf8ed.jpg',
+        cost: '10 000',
     },
     {
         id: 5,
