@@ -6,7 +6,7 @@ import 'antd/lib/row/style'
 import Col from 'antd/lib/col'
 import 'antd/lib/col/style'
 import './index.less'
-import getListOfCategories from '../../../../helpers/getListOfCategories'
+import getListOfCategories from '../../../../helpers/get-list-of-categories'
 
 const categories = getListOfCategories(
     'main-banner__category',

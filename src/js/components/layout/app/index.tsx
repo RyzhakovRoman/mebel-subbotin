@@ -1,11 +1,11 @@
 import * as React from 'react'
+import {FC} from 'react'
 import {BrowserRouter as Router} from 'react-router-dom'
 import Header from '../header'
 import Main from '../main'
 import './index.less'
-import {ReactElement} from 'react'
 
-export default function App(): ReactElement {
+const App: FC = () => {
     return (
         <Router>
             <Header />
@@ -14,4 +14,4 @@ export default function App(): ReactElement {
     )
 }
 
-// export default hot(App)
+export default App

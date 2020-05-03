@@ -1,25 +1,33 @@
 import * as React from 'react'
-import {ReactElement, useEffect} from 'react'
+import {ReactElement, useEffect, useState} from 'react'
+import {useDispatch} from 'react-redux'
 import {useParams} from 'react-router'
-import {useDispatch, useSelector} from 'react-redux'
 import Row from 'antd/lib/row'
 import 'antd/lib/row/style'
 import Col from 'antd/lib/col'
 import 'antd/lib/col/style'
-import {RootStateType} from '../../../store/reducers'
-import {getProduct} from '../../../store/actions/actionCreatorsForRequest'
 import Container from '../../layout/container'
 import ImgPicker from '../../kit/img-picker'
 import Button from '../../kit/button'
 import {Cost} from '../../kit/cost'
 import {TabInterface, Tabs} from '../../kit/tabs'
 import './index.less'
+import ProductInterface from '../../../types/models/product-interface'
+import {products} from '../../../models/products'
+import getCategories from '../../../helpers/get-categories'
+import getCost from '../../../helpers/for-product-cost/get-cost'
+import CategoryInterface from '../../../types/models/category-interface'
+import ProductCategories from './categories'
+import getAssocListOfProductProperties from '../../../helpers/get-assoc-list-of-product-properties'
+import Properties from './properties'
+import {addProductToCart} from '../../../store/actions/actionCreators/cart'
+import findProductById from '../../../helpers/search-in-models/find-product-by-id'
+import AssocListOfProductPropertiesByTypeInterface from '../../../types/render/assoc-list-of-product-properties-by-type-interface'
+import ProductConfigurationInterface, {
+    AssocListOfSelectedPropertyInterface,
+} from '../../../types/render/product-configuration-interface'
 
 const fakeImages = [
-        // 'https://smebel.uz/files/proekti/krovati/135.jpg',
-        // 'https://smebel.uz/files/proekti/krovati/101.jpg',
-        // 'https://smebel.uz/files/proekti/krovati/135.jpg',
-        // 'https://smebel.uz/files/proekti/krovati/101.jpg',
         'http://localhost:8080/dist/src/img/main-banner/5499b595352f2a0022878fa026fd5413.jpg',
         'http://localhost:8080/dist/src/img/main-banner/5499b595352f2a0022878fa026fd5413.jpg',
         'http://localhost:8080/dist/src/img/main-banner/5499b595352f2a0022878fa026fd5413.jpg',
@@ -37,20 +45,33 @@ const fakeImages = [
             panel: <div>Панель отзывов</div>,
         },
     ]
+
 export default function Product(): ReactElement {
     const {id} = useParams(),
-        {data: product, dataRequestStatus} = useSelector(
-            (state: RootStateType) => state.pages.product
-        ),
-        dispatch = useDispatch()
+        dispatch = useDispatch(),
+        [product, setProduct] = useState<ProductInterface>(),
+        [categories, setCategories] = useState<CategoryInterface[]>([]),
+        [
+            productProperties,
+            setProductProperties,
+        ] = useState<AssocListOfProductPropertiesByTypeInterface>(null),
+        [
+            selectedProperties,
+            setSelectedProperties,
+        ] = useState<AssocListOfSelectedPropertyInterface>({})
 
     useEffect(() => {
-        dispatch(getProduct(id))
+        const product = findProductById(+id)
+        setProduct(product)
+        setCategories(getCategories(product))
+        setProductProperties(getAssocListOfProductProperties(product))
     }, [id])
 
-    if (dataRequestStatus === 'started' || dataRequestStatus === 'didNotLoad')
-        return <h2>Информация о продукте загружается</h2>
-    // {/*<img src={product.imgLink} alt={product.name} />*/}
+    if (product === undefined) return null
+
+    console.log('selectedProperties ', selectedProperties)
+
+    const costFormatted: number = getCost(product.cost, selectedProperties)
 
     return (
         <Container>
@@ -60,28 +81,33 @@ export default function Product(): ReactElement {
                 </Col>
                 <Col sm={12}>
                     <h1 className={'product__name'}>{product.name}</h1>
-                    <p>Артикул продукта: {product.id} 3274</p>
+                    <p>Артикул: {product.article}</p>
                     <Cost
                         className={'cost_large product__cost'}
-                        cost={product.cost}
-                        canceledCost={'12 000'}
+                        cost={costFormatted}
+                        canceledCost={product.canceledCost}
                     />
-                    <div className={'product__short-desc'}>
-                        <p>Краткое описание</p>
-                        <p>
-                            Может быть тут будет какое то примечяние <br /> даже
-                            возможно на пару строчек
-                        </p>
-                    </div>
-                    {/* todo - Сделать первичной */}
+                    <Properties
+                        assocList={productProperties}
+                        onChangeValue={sp => {
+                            console.log('Изменение выбраных свойств')
+                            setSelectedProperties(sp)
+                        }}
+                    />
+                    <ProductCategories categories={categories} />
                     <Button
-                        className={'button_primary'}
+                        className={'button_primary button_large'}
                         text={'Добавить в корзину'}
+                        onClick={() => {
+                            console.log('Добавить в корзину')
+                            const productConfiguration: ProductConfigurationInterface = {
+                                ...product,
+                                assocListOfSelectedProperty: selectedProperties,
+                                amount: 1,
+                            }
+                            dispatch(addProductToCart(productConfiguration))
+                        }}
                     />
-                    <p className={'product__categories'}>
-                        Категории: <a href={'#'}>Детские</a>,{' '}
-                        <a href={'#'}>Другая категория</a>
-                    </p>
                 </Col>
                 <Col sm={20}>
                     <Tabs
@@ -91,7 +117,17 @@ export default function Product(): ReactElement {
                     />
                 </Col>
             </Row>
-            <div style={{width: 100, height: 100}}>d</div>
+            <div style={{width: 100, height: 100}} />
         </Container>
     )
 }
+/*
+<div className={'product__short-desc'}>
+    <p>Краткое описание</p>
+    <p>
+        Может быть тут будет какое то примечяние <br /> даже
+        возможно на пару строчек
+    </p>
+</div>
+
+ */

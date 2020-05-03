@@ -13,7 +13,7 @@ export default function Main(): ReactElement {
     return (
         <main>
             <Switch>
-                <Route path={R.CATALOG_CATEGORY + '/product-:id'}>
+                <Route path={R.PRODUCT}>
                     <Product />
                 </Route>
                 <Route

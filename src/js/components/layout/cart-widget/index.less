@@ -1,0 +1,85 @@
+@import "../../style/default";
+
+.cart-widget {
+  position: relative;
+  min-width: 165px;
+  text-align: right;
+  padding: 4px 0;
+
+  &__sum {
+    display: block;
+    position: absolute;
+    right: 45%;
+    top: 4px;
+    background-color: #f9be10;
+    white-space: nowrap;
+    padding: 0 0.8rem;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+
+  &__dropdown {
+    list-style: none;
+    display: none;
+    position: absolute;
+    width: 574px;
+    min-height: 100px;
+    right: 0;
+    top: 100%;
+    padding: 2rem;
+    border-radius: .8rem;
+    background-color: white;
+    box-shadow: 0 4px 18px -14px rgba(0, 0, 0, 0.75);
+    z-index: 2;
+    cursor: default;
+    text-align: left;
+
+    &_active {
+      display: block;
+    }
+  }
+
+  &__product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid @light-gray;
+    padding: .5rem 0;
+  }
+
+  &__product-link-and-cost {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__product-link {
+    max-width: 80%;
+    text-align: left;
+    line-height: 1.2;
+  }
+
+  &__properties {
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  &__delete {
+    color: red;
+    cursor: pointer;
+  }
+
+  &__footer {
+    padding: 1rem 0 0;
+    text-align: right;
+  }
+
+  &__actions {
+    margin-top: 1rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

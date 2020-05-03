@@ -1,11 +1,12 @@
 import * as React from 'react'
 import {FunctionComponent} from 'react'
 import './index.less'
+import divideIntegerBySpace from '../../../helpers/divide-integer-by-space'
 
 export interface ConstPropsInterface {
-    cost: string;
+    cost: number;
     className?: string;
-    canceledCost?: string;
+    canceledCost?: number;
 }
 
 export const Cost: FunctionComponent<ConstPropsInterface> = ({
@@ -17,9 +18,9 @@ export const Cost: FunctionComponent<ConstPropsInterface> = ({
         <div className={'cost ' + className}>
             {/* eslint-disable-next-line @typescript-eslint/strict-boolean-expressions */}
             {canceledCost && (
-                <span className={'cost__canceled'}>P {canceledCost}</span>
+                <span className={'cost__canceled'}>₽ {canceledCost}</span>
             )}
-            P {cost}
+            ₽ {divideIntegerBySpace(cost)}
         </div>
     )
 }

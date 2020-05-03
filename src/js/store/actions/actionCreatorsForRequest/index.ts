@@ -1,26 +1,17 @@
 import {
-    loadProductsError,
-    // loadMoreProductsSuccess,
     loadProductsStarted,
     loadProductsSuccess,
 } from '../actionCreators/products'
-// import products from '../../../server-fake-data/products'
+import {productsBeds as products} from '../../../models/products/products-beds'
 import {PaginationInterface} from '../../../types'
-import {ProductBriefInterface, ProductInterface} from '../../../types/models'
-import {
-    loadProductError,
-    loadProductStarted,
-    loadProductSuccess,
-} from '../actionCreators/product'
-import products from '../../../server-fake-data/products'
+import {loadProductStarted, loadProductSuccess} from '../actionCreators/product'
 
-const defaultFilters = {
-        pagination: {
-            start: 0,
-            limit: 10,
-        },
+const defaultFilters: FiltersInterface = {
+    pagination: {
+        start: 0,
+        limit: 10,
     },
-    DOMEN = 'http://5e497669728fde0014e351a9.mockapi.io'
+}
 
 interface FiltersInterface {
     pagination: PaginationInterface;
@@ -28,26 +19,35 @@ interface FiltersInterface {
 
 // eslint-disable-next-line one-var
 export const getProducts = (
-    category: string,
-    subcategory: string = '',
+    categoryTranslit: string,
+    subcategoryTranslit: string = '',
     filters: FiltersInterface = defaultFilters
 ): any => {
-    return async dispatch => {
-        console.log('getProducts ', category, subcategory, filters)
+    return dispatch => {
+        console.log('getProducts ', categoryTranslit, filters)
         dispatch(loadProductsStarted())
-        return fetch(`${DOMEN}/products`, {
-            method: 'GET',
-        })
-            .then(async response => response.json())
-            .then((data: ProductBriefInterface[]) => {
-                dispatch(loadProductsSuccess(data))
-            })
-            .catch(() => dispatch(loadProductsError()))
+        // Ищем категорию по translit
+        // const category = getCategoryByTranslit(categoryTranslit),
+        // Ищем подкатегорию по translit
+        // subcategory = getCategoryByTranslit(subcategoryTranslit)
+        // Берем продукты нужно категории
+        // Если есть id подкатегории то выбираем продукты этой подкатегории
+        // Иначе выбираем все продукты основной категории
+        dispatch(loadProductsSuccess(products))
+        // return fetch(`${DOMEN}/products`, {
+        //     method: 'GET',
+        // })
+        //     .then(async response => response.json())
+        //     .then((data: ProductBriefInterface[]) => {
+        //         dispatch(loadProductsSuccess(data))
+        //     })
+        //     .catch(() => dispatch(loadProductsError()))
     }
 }
 
 // eslint-disable-next-line one-var
 export const getProduct = (id: string): any => {
+    // eslint-disable-next-line @typescript-eslint/require-await
     return async dispatch => {
         dispatch(loadProductStarted())
 

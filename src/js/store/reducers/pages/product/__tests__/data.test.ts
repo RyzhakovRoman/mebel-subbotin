@@ -10,6 +10,7 @@ describe('Тестирование загрузки данных продукт�
     const product: ProductInterface = {
         id: 0,
         imgLink: 'google.com',
+        translit: '',
         name: 'Product Name',
     }
 
