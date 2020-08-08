@@ -1,3 +1,5 @@
+@import "./default";
+
 * {
   box-sizing: border-box;
   // todo - Изменить шрифт
@@ -6,8 +8,23 @@
 
 html {
   font-size: 16px !important;
+
+  @media (max-width: @sc-xl) {
+    font-size: 15px !important;
+  }
+
+  @media (max-width: @sc-md) {
+    font-size: 14px !important;
+  }
 }
 
 body {
   font-size: 1rem !important;
+  font-family: @font-roboto;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: @font-open-sans;
+  font-weight: bold;
 }

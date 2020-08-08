@@ -1,43 +1,53 @@
 import * as React from 'react'
-import {ReactElement} from 'react'
-import {useParams} from 'react-router'
+import {FC, ReactElement} from 'react'
 import {Link} from 'react-router-dom'
 import {R} from '../../../navigation/routes'
 import './index.less'
-import {getCategoryByTranslit} from '../../../helpers/get-category-by-translit'
-import {categories} from '../../../models/categories'
+import categories from '../../../models/categories'
+import CategoryInterface from '../../../types/models/category-interface'
 
-export default function Subcategories(): ReactElement {
+interface SubcategoriesPropsInterface {
+    categoryInfo: [number, CategoryInterface];
+    className?: string;
+}
+
+const Subcategories: FC<SubcategoriesPropsInterface> = ({
+    categoryInfo: [categoryId, category],
+    className = '',
+}): ReactElement => {
     // todo - Сделать тип возможных категорий
-    const {category: categoryTranslit} = useParams(),
-        // Ищем категорию
-        selectedCategory = getCategoryByTranslit(categoryTranslit),
-        // Ищем список подкатегорий, у которых родительская категория
+    const // Ищем список подкатегорий, у которых родительская категория
         // равна выбранной категории
-        subcategoriesList = categories.filter(
-            category => category.parentCategoryId === selectedCategory.id
-        )
+        subcategoriesList = []
 
-    if (subcategoriesList === undefined) return null
+    for (const id in categories) {
+        const subcategory = categories[id]
+
+        if (subcategory.parentCategoryId === categoryId) {
+            subcategoriesList.push(
+                <Link
+                    to={`${R.CATALOG}/${category.translit}/${subcategory.translit}`}
+                    className={'subcategories__item'}
+                    key={id}
+                >
+                    {subcategory.nameForLink}
+                </Link>
+            )
+        }
+    }
 
     return (
-        <div className={'subcategories'}>
+        <div className={'subcategories ' + className}>
             <Link
-                to={`${R.CATALOG}/${categoryTranslit}`}
+                to={`${R.CATALOG}/${category.translit}`}
                 className={'subcategories__item'}
                 key={'all'}
             >
                 Все
             </Link>
-            {subcategoriesList.map(subcategory => (
-                <Link
-                    to={`${R.CATALOG}/${categoryTranslit}/${subcategory.translit}`}
-                    className={'subcategories__item'}
-                    key={subcategory.id}
-                >
-                    {subcategory.nameForLink}
-                </Link>
-            ))}
+            {subcategoriesList}
         </div>
     )
 }
+
+export default Subcategories

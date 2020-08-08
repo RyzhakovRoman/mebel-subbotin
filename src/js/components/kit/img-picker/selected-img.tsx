@@ -1,34 +1,48 @@
 import * as React from 'react'
-import {ReactElement, useState} from 'react'
+import {ReactElement, useEffect, useMemo, useRef, useState} from 'react'
 import './index.less'
 
 interface SelectedImgPropsInterface {
     url: string;
 }
 
-const scaleValue = 2
+const scaleValue = 2,
+    getTransformString = (x: number, y: number): string => {
+        return `transform: translate3d(${String(x)}px, ${String(y)}px, 0px) ${
+            x !== 0 || y !== 0 ? `scale(${scaleValue.toString()})` : ''
+        }`
+    }
 
 export default function SelectedImg({
     url,
 }: SelectedImgPropsInterface): ReactElement {
-    const [{x, y}, setTranslate] = useState({x: 0, y: 0}),
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        translate = `translate3d(${x}px, ${y}px, 0px) ${
-            x !== 0 || y !== 0 ? `scale(${scaleValue.toString()})` : ''
-        }`,
+    const imgRef = useRef(),
+        [rect, setRect] = useState(),
         handleMouseMove = (e): void => {
-            const rect = e.target.parentNode.getBoundingClientRect(),
-                x = -(e.pageX - rect.x - rect.width / scaleValue),
+            const x = -(e.pageX - rect.x - rect.width / scaleValue),
                 y = -(
                     e.pageY -
                     (rect.y + window.scrollY) -
                     rect.height / scaleValue
                 )
-            setTranslate({x, y})
+
+            // @ts-ignore
+            imgRef.current.style = getTransformString(x, y)
         },
-        handleMouseOut = (e): void => {
-            setTranslate({x: 0, y: 0})
+        handleMouseOut = (): void => {
+            const x = 0,
+                y = 0
+
+            // @ts-ignore
+            imgRef.current.style = getTransformString(x, y)
         }
+
+    useEffect(() => {
+        const rect = document
+            .getElementsByClassName('img-picker__img-wrapper')[0]
+            .getBoundingClientRect()
+        setRect(rect)
+    }, [])
 
     return (
         <div
@@ -38,7 +52,7 @@ export default function SelectedImg({
             onMouseOut={handleMouseOut}
         >
             <img
-                style={{transform: translate}}
+                ref={imgRef}
                 className={'img-picker__img'}
                 src={url}
                 alt={'Изображение продукта'}

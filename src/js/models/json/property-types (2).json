@@ -1,0 +1,15 @@
+[
+{"type":"header","version":"5.0.2","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"subbotin"},
+{"type":"table","name":"property-types","database":"subbotin","data":
+[
+{"id":"2","type":"size-for-bed","name":"Размер"},
+{"id":"3","type":"color","name":"Цвет"},
+{"id":"4","type":"bedside-tables-mode","name":"Модификация тумбы"},
+{"id":"5","type":"overall-size","name":"Габариты, см (ШхВхГ)"},
+{"id":"6","type":"tables-mode","name":"Модификация стола"},
+{"id":"7","type":"chair-mode","name":"Модификация стула"},
+{"id":"8","type":"material","name":"Материал"}
+]
+}
+]

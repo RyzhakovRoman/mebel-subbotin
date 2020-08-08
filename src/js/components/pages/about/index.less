@@ -1,0 +1,25 @@
+@import "../../style/default";
+
+.about-adv-list {
+  list-style: none;
+  padding: 0;
+
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-left: 1.6rem;
+
+    &:before {
+      position: absolute;
+      content: '';
+      display: block;
+      width: .6rem;
+      height: .6rem;
+      left: .4rem;
+      background-color: @primary-color;
+      border-radius: 50%;
+    }
+  }
+}

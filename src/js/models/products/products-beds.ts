@@ -1,6 +1,6 @@
-import {ProductInterface} from '../../types/models/product-interface'
+import {OldProductInterface} from '../../types/models/product-interface'
 
-export const productsBeds: ProductInterface[] = [
+export const productsBeds: OldProductInterface[] = [
     /*
         Кровати для подкатегории: 0
      */

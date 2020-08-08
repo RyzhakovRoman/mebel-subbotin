@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {ReactElement, useState} from 'react'
+import {FC, useState} from 'react'
 import Row from 'antd/lib/row'
 import 'antd/lib/row/style'
 import Col from 'antd/lib/col'
@@ -11,25 +11,18 @@ interface ImgPickerPropsInterface {
     images: string[];
 }
 
-/*
- todo - Главное изображение выделить в отдельный компонент, чтоб остальные
-  не перерендеривались при увеличении
-*/
-
 let i = 0
 
-export default function ImgPicker({
-    images,
-}: ImgPickerPropsInterface): ReactElement {
+const ImgPicker: FC<ImgPickerPropsInterface> = ({images}) => {
     const [showImgUrl, setShowImgId] = useState(images[0])
 
     return (
-        <Row gutter={[0, 12]} className={'img-picker'}>
-            <Col sm={24}>
+        <Row className={'img-picker'}>
+            <Col xs={24} sm={24}>
                 <SelectedImg url={showImgUrl} />
             </Col>
-            <Col sm={24}>
-                <Row gutter={12}>
+            <Col xs={24} sm={24}>
+                <Row gutter={{xs: 8, sm: 12}}>
                     {images.map(imgUrl => {
                         const activeClass =
                             // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
@@ -37,7 +30,7 @@ export default function ImgPicker({
                             'img-picker__img-wrapper_active'
 
                         return (
-                            <Col sm={6} key={imgUrl + i++}>
+                            <Col xs={6} sm={6} key={imgUrl + i++}>
                                 <div
                                     className={
                                         'img-picker__img-wrapper ' +
@@ -60,3 +53,5 @@ export default function ImgPicker({
         </Row>
     )
 }
+
+export default React.memo(ImgPicker)

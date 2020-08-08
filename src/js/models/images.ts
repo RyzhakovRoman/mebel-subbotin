@@ -1,6 +1,10 @@
-import {ImageInterface} from '../types/models/image-interface'
+import {
+    AssocListOfImagesInterface,
+    OldImageInterface,
+} from '../types/models/image-interface'
+import arrayToAssocList from '../helpers/array-to-assoc-list'
 
-export const images: ImageInterface[] = [
+const images: OldImageInterface[] = [
     /*
         Для продукта с id 0
      */
@@ -44,3 +48,8 @@ export const images: ImageInterface[] = [
         isMain: true,
     },
 ]
+
+// eslint-disable-next-line
+const assocListOfImages: AssocListOfImagesInterface = arrayToAssocList(images)
+
+export default assocListOfImages

@@ -12,20 +12,20 @@ export const Range: FunctionComponent = () => {
 
     return (
         <div className={'range'}>
-            <div
-                className={'range__drawer'}
-                style={{
-                    transform: `translate3d(${leftDrawerPosition}px, -.45rem, 0)`,
-                }}
-                onMouseDown={() => setLeftDrawerActive(true)}
-                onMouseUp={() => setLeftDrawerActive(false)}
-                onMouseMove={e => {
-                    console.log(e.target.parentNode.getBoundingClientRect())
-                    if (leftDrawerActive)
-                        setLeftDrawerPosition(leftDrawerPosition + 10)
-                }}
-            />
-            <div className={'range__line'} />
+            {/*<div*/}
+            {/*    className={'range__drawer'}*/}
+            {/*    style={{*/}
+            {/*        transform: `translate3d(${leftDrawerPosition}px, -.45rem, 0)`,*/}
+            {/*    }}*/}
+            {/*    onMouseDown={() => setLeftDrawerActive(true)}*/}
+            {/*    onMouseUp={() => setLeftDrawerActive(false)}*/}
+            {/*    onMouseMove={e => {*/}
+            {/*        console.log(e.target.parentNode.getBoundingClientRect())*/}
+            {/*        if (leftDrawerActive)*/}
+            {/*            setLeftDrawerPosition(leftDrawerPosition + 10)*/}
+            {/*    }}*/}
+            {/*/>*/}
+            {/*<div className={'range__line'} />*/}
             {/*<div className={'range__drawer'} />*/}
         </div>
     )

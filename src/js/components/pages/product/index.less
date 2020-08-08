@@ -5,14 +5,42 @@
 .product {
   padding-top: 2rem;
 
+  &__properties {
+    & > * {
+      padding-left: 1rem;
+
+      @media (max-width: @sc-xl) {
+        padding-left: 0;
+      }
+    }
+
+    @media (max-width: @sc-md) {
+      margin-top: 2rem;
+    }
+  }
+
   &__name {
+    position: relative;
     padding-bottom: 1rem;
     border-bottom: @light-border;
     font-size: 2.125rem;
+
+    @media (max-width: @sc-xl) {
+      font-size: 1.8rem;
+    }
+
+    @media (max-width: @sc-xs) {
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
   }
 
   &__cost {
     padding-bottom: 1rem;
+
+    @media (max-width: @sc-xl) {
+      font-size: 1.5rem;
+    }
   }
 
   &__short-desc {
@@ -32,5 +60,16 @@
 
   &__tabs {
     margin-top: 2rem;
+  }
+
+  &__article {
+    position: absolute;
+    right: 0;
+    bottom: -0.6rem;
+    font-size: 0.9rem;
+    background: #fff;
+    padding-left: 1rem;
+    font-weight: 400;
+    color: #969696;
   }
 }

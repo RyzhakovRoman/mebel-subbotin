@@ -1,9 +1,9 @@
 import * as React from 'react'
-import {FunctionComponent, ReactElement, SyntheticEvent} from 'react'
+import {FunctionComponent, ReactElement, ReactNode, SyntheticEvent} from 'react'
 import './index.less'
 
 interface ButtonPropsInterface {
-    text: string;
+    text: ReactNode;
     className?: string;
     onClick?: (e?: SyntheticEvent) => void;
 }

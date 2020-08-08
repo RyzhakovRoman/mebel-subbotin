@@ -1,20 +1,22 @@
-import {ReactElement} from 'react'
 import * as React from 'react'
+import {ReactElement} from 'react'
 import {Link} from 'react-router-dom'
-import {categories} from '../models/categories'
+import categories from '../models/categories'
 import {R} from '../navigation/routes'
+import CategoryInterface from '../types/models/category-interface'
 
-export default function getListOfCategories(
+const getListOfCategories = (
     classForItem?: string,
     classForLink?: string
-): ReactElement[] {
-    const categoryNodes = []
+): ReactElement[] => {
+    const categoryList = [],
+        categoriesArray: CategoryInterface[] = Object.values(categories)
 
     // Формируем список всех основных категорий
-    categories.forEach(category => {
+    categoriesArray.forEach(category => {
         if (category.parentCategoryId === null) {
-            categoryNodes.push(
-                <li className={classForItem} key={category.id}>
+            categoryList.push(
+                <li className={classForItem} key={category.translit}>
                     <Link
                         className={classForLink}
                         to={`${R.CATALOG}/${category.translit}`}
@@ -26,5 +28,7 @@ export default function getListOfCategories(
         }
     })
 
-    return categoryNodes
+    return categoryList
 }
+
+export default getListOfCategories

@@ -2,44 +2,75 @@
     Стоимость зависит от стоимости продукта и выбранных свойств
  */
 
-import {AssocListOfSelectedPropertyInterface} from '../../types/render/product-configuration-interface'
+import {
+    AssocListOfSelectedPropertyInterface,
+    MapOfProductPropertyType,
+} from '../../types'
+import ColorInterface from '../../types/models/color-interface'
+import {COST_PERCENT_FOR_ALL_COLORS} from '../../components/constants'
 
 const getCost = (
     baseProductCost: number,
-    assocList: AssocListOfSelectedPropertyInterface
+    productProperties: MapOfProductPropertyType,
+    selectedProperties: AssocListOfSelectedPropertyInterface,
+    selectedColorProperty: ColorInterface
 ): number => {
-    console.log('getCost arguments ', baseProductCost, assocList)
+    // console.log(
+    //     'getCost arguments ',
+    //     baseProductCost,
+    //     productProperties,
+    //     selectedProperties
+    // )
 
-    let productCostWithSize: number = baseProductCost,
-        // Часть стоимости, в рублях, которая высчитывается
-        // путем вычисления процентов других свойств от стоимости,
-        // с учетом размера
-        costOfOtherProperties: number = 0
+    // Отделяем свойства влияющие на цену,
+    // делением свойств на те кто добавляют количество рублей к базовой стоимости и на те,
+    // которые добавляют процент от базовой суммы + процент от суммы с учетом всех добавленных стоимостей
+    const selectedPropertiesWithAddedCost = {},
+        selectedPropertiesWithCostPercent = {}
 
-    for (const propertyTypeType in assocList) {
-        const property = assocList[propertyTypeType]
+    for (const propertyTypeId in selectedProperties) {
+        const productPropertyValueId = selectedProperties[propertyTypeId],
+            property = productProperties.get(+propertyTypeId),
+            selectedProductPropertyValue = property.values.get(
+                productPropertyValueId
+            )
 
-        /*
-            Тут мы добавляем то, как на стоимость
-            влияют различные свойства
-         */
+        // console.log('property ', property)
 
-        // Для размера
-        if (propertyTypeType === 'size') {
-            if (property.costPercent !== null)
-                productCostWithSize +=
-                    (baseProductCost / 100) * property.costPercent
-        }
-
-        // Для цвета
-        if (propertyTypeType === 'color') {
-            if (property.costPercent !== null)
-                costOfOtherProperties +=
-                    (productCostWithSize / 100) * property.costPercent
-        }
+        if (selectedProductPropertyValue.addedCost !== null)
+            selectedPropertiesWithAddedCost[
+                propertyTypeId
+            ] = selectedProductPropertyValue
+        else if (selectedProductPropertyValue.costPercent !== null)
+            selectedPropertiesWithCostPercent[
+                propertyTypeId
+            ] = selectedProductPropertyValue
     }
 
-    return Math.floor(productCostWithSize + costOfOtherProperties)
+    // Стоимость со всеми добавочными стоимостями от свойств продукта
+    let costWithAllAddedCost: number = baseProductCost,
+        costOfOtherProperties: number = 0
+
+    for (const propertyTypeId in selectedPropertiesWithAddedCost) {
+        const selectedProductPropertyValue =
+            selectedPropertiesWithAddedCost[propertyTypeId]
+        costWithAllAddedCost += +selectedProductPropertyValue.addedCost
+    }
+
+    if (selectedColorProperty !== undefined) {
+        costOfOtherProperties +=
+            (costWithAllAddedCost / 100) * COST_PERCENT_FOR_ALL_COLORS
+    }
+
+    for (const propertyTypeId in selectedPropertiesWithCostPercent) {
+        const selectedProductPropertyValue =
+            selectedPropertiesWithCostPercent[propertyTypeId]
+        costOfOtherProperties +=
+            (costWithAllAddedCost / 100) *
+            selectedProductPropertyValue.costPercent
+    }
+
+    return Math.floor(costWithAllAddedCost + costOfOtherProperties)
 }
 
 export default getCost

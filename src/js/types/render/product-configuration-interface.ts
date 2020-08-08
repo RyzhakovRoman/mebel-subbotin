@@ -1,12 +1,22 @@
 import ProductInterface from '../models/product-interface'
-import SelectedPropertyInterface from './selected-property-interface'
+import ColorInterface from '../models/color-interface'
 
-export interface AssocListOfSelectedPropertyInterface {
-    [propertyTypeType: string]: SelectedPropertyInterface;
+interface SelectedPropertyInfoInterface {
+    propertyTypeName: string;
+    propertyValueValue: string | ColorInterface;
+    propertyTypeType: string;
 }
 
+// Ключ это id типа свойства
+export type MapOfSelectedPropertyInfoType = Map<
+    number | string,
+    SelectedPropertyInfoInterface
+>
+
 interface ProductConfigurationInterface extends ProductInterface {
-    assocListOfSelectedProperty: AssocListOfSelectedPropertyInterface;
+    productId: number;
+    selectedProperties: MapOfSelectedPropertyInfoType;
+    costBasedOnProperties: number;
     amount: number;
 }
 

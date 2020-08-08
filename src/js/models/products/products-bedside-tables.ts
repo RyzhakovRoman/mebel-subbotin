@@ -1,6 +1,6 @@
-import {ProductInterface} from '../../types/models/product-interface'
+import {OldProductInterface} from '../../types/models/product-interface'
 
-export const productsBedsideTables: ProductInterface[] = [
+export const productsBedsideTables: OldProductInterface[] = [
     {
         id: 66,
         categoryId: 2,

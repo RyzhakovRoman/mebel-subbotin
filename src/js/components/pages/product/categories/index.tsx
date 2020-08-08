@@ -2,49 +2,44 @@ import * as React from 'react'
 import {FC} from 'react'
 import {Link} from 'react-router-dom'
 import {R} from '../../../../navigation/routes'
-import {ProductInterface} from '../../../../types/models/product-interface'
-import {CategoryInterface} from '../../../../types/models/category-interface'
+import {MapOfCategoryType} from '../../../../types/models/category-interface'
 
 interface ProductCategoriesPropsInterface {
-    categories: CategoryInterface[];
+    categories: MapOfCategoryType;
 }
 
 const ProductCategories: FC<ProductCategoriesPropsInterface> = ({
     categories,
 }) => {
-    return (
-        <p className={'product__categories'}>
-            Категории:{' '}
-            {categories.map((category, i) => {
-                let linkToCategoryPart = '',
-                    parentCategory: CategoryInterface = null
+    const categoryLinks = []
 
-                if (category.parentCategoryId !== null)
-                    parentCategory = categories.find(
-                        ({id}) => category.parentCategoryId === id
-                    )
+    for (const category of categories.values()) {
+        const {parentCategoryId} = category
+        let linkToCategoryPart = ''
 
-                if (parentCategory !== null)
-                    linkToCategoryPart = `${parentCategory.translit}/`
+        if (parentCategoryId === null) linkToCategoryPart += category.translit
 
-                linkToCategoryPart += `${category.translit}`
+        if (parentCategoryId !== null)
+            linkToCategoryPart += `${
+                categories.get(parentCategoryId).translit
+            }/${category.translit}`
 
-                return (
-                    <span key={category.id}>
-                        <Link
-                            to={`${R.CATALOG}/${linkToCategoryPart}`}
-                            key={category.id}
-                        >
-                            {category.h1}
-                        </Link>
-                        {i < categories.length - 1 ? (
-                            <span key={`${category.translit}`}>, </span>
-                        ) : null}
-                    </span>
-                )
-            })}
-        </p>
-    )
+        categoryLinks.push(
+            <span key={category.translit}>
+                <Link
+                    to={`${R.CATALOG}/${linkToCategoryPart}`}
+                    key={category.translit}
+                >
+                    {category.h1}
+                </Link>
+            </span>,
+            <span key={`${category.translit}+`}>, </span>
+        )
+    }
+
+    categoryLinks.pop()
+
+    return <p className={'product__categories'}>Категории: {categoryLinks}</p>
 }
 
 export default ProductCategories

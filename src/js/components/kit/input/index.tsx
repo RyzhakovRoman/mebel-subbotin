@@ -1,15 +1,21 @@
 import * as React from 'react'
-import {FunctionComponent, ReactElement} from 'react'
+import {ChangeEvent, FC} from 'react'
 import './index.less'
 
 interface InputPropsInterface {
-    value: string;
+    value?: string;
+    error?: boolean;
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: FunctionComponent<InputPropsInterface> = ({
-    value,
-}): ReactElement => {
-    return <input className={'input'} value={value} />
+const Input: FC<InputPropsInterface> = ({value, error, onChange}) => {
+    return (
+        <input
+            className={`input${error ? ' input_error' : ''}`}
+            value={value}
+            onChange={onChange}
+        />
+    )
 }
 
 export default React.memo(Input)

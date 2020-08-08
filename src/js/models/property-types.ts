@@ -1,14 +1,22 @@
-import {PropertyTypeInterface} from '../types/models/property-type-interface'
+import arrayToAssocList from '../helpers/array-to-assoc-list'
+import {
+    AssocListOfPropertyTypesInterface,
+    OldPropertyTypeInterface,
+} from '../types/models/property-type-interface'
 
-export const propertyTypes: PropertyTypeInterface[] = [
-    {
-        id: 0,
-        type: 'size',
-        name: 'Размер',
-    },
-    {
-        id: 1,
-        type: 'color',
-        name: 'Цвет',
-    },
+const propertyTypes: OldPropertyTypeInterface[] = [
+    {id: '2', type: 'size-for-bed', name: 'Размер'},
+    {id: '3', type: 'color', name: 'Цвет'},
+    {id: '4', type: 'bedside-tables-mode', name: 'Модификация тумбы'},
+    {id: '5', type: 'overall-size', name: 'Габариты, см (ШхВхГ)'},
+    {id: '6', type: 'tables-mode', name: 'Модификация стола'},
+    {id: '7', type: 'chair-mode', name: 'Модификация стула'},
+    {id: '8', type: 'material', name: 'Материал'},
 ]
+
+// eslint-disable-next-line
+const assocListOfPropertyTypes: AssocListOfPropertyTypesInterface = arrayToAssocList(
+    propertyTypes
+)
+
+export default assocListOfPropertyTypes

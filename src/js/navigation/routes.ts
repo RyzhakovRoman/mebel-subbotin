@@ -6,4 +6,6 @@ export enum R {
     CATALOG_CATEGORY = '/catalog/:category',
     DELIVERY = '/delivery',
     PRODUCT = '/catalog/product-:id',
+    CART = '/cart',
+    MATERIALS = '/materials',
 }

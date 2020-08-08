@@ -102,6 +102,12 @@ module.exports = (env = {}) => {
                                 loader: 'less-loader',
                                 options: {
                                     javascriptEnabled: true,
+                                    modifyVars: {
+                                        'primary-color': '#f9be10',
+                                        'form-item-margin-bottom': '20px',
+                                        'card-padding-base': '16px',
+                                        'link-color': '#1890ff'
+                                    },
                                 },
                             },
                         ],

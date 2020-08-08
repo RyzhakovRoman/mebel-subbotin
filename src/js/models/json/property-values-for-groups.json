@@ -1,0 +1,11 @@
+[
+{"type":"header","version":"5.0.2","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"subbotin"},
+{"type":"table","name":"property-values-for-groups","database":"subbotin","data":
+[
+{"id":"1","productsPropertyValuesGroupId":"1","propertyValueId":"16","costPercent":null,"addedCost":null},
+{"id":"2","productsPropertyValuesGroupId":"1","propertyValueId":"17","costPercent":"50","addedCost":null},
+{"id":"3","productsPropertyValuesGroupId":"1","propertyValueId":"18","costPercent":"100","addedCost":null}
+]
+}
+]

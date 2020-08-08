@@ -2,6 +2,15 @@
 
 .container {
   width: 100%;
-  max-width: @container-max-width;
+  max-width: @container-max-width-sc-xxl;
   margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: @sc-xxl) {
+    max-width: @container-max-width-sc-xl;
+  }
+
+  @media (max-width: @sc-xs) {
+    padding: 0 1rem;
+  }
 }

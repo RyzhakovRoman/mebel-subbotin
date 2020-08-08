@@ -15,8 +15,14 @@ export interface DeleteProductFromCartActionInterface {
     productConfigurationId: number;
 }
 
+export interface ReduceAmountProductInCartActionInterface {
+    type: T.REDUCE_AMOUNT_PRODUCT_IN_CART;
+    productConfigurationId: number;
+}
+
 type CartActionType =
     | AddProductToCartActionInterface
     | DeleteProductFromCartActionInterface
+    | ReduceAmountProductInCartActionInterface
 
 export default CartActionType

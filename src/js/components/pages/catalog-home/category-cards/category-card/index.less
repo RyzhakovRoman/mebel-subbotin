@@ -1,0 +1,31 @@
+@import '../../../../style/default';
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  //background-color: #f0f0f0;
+  //border: 1px solid #d9d9d9;
+  border-radius: 1rem;
+
+  &__icon {
+    width: 7rem;
+    height: 6rem;
+  }
+
+  &__name {
+    font-family: @heading-ff;
+    font-size: @text-size-xl;
+  }
+
+  &__subcategories {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+
+    & .subcategories__item {
+      margin: 0 0.25rem .5rem;
+    }
+  }
+}

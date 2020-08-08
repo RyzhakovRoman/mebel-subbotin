@@ -1,0 +1,33 @@
+@import "../../style/default";
+
+.plus-minus {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 1px solid @light-gray;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    &_minus {
+      font-size: 2.1rem;
+    }
+
+    &:hover {
+      background-color: @light-gray;
+      color: #fff;
+    }
+  }
+
+  &__number {
+    display: inline-block;
+    padding: 0 .4rem;
+    font-weight: bold;
+  }
+}

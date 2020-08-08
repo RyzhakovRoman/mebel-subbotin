@@ -1,17 +1,18 @@
 import * as React from 'react'
 import {FC, useState} from 'react'
 import {useSelector} from 'react-redux'
-import './index.less'
 import {RootStateType} from '../../../store/reducers'
+import ProductConfigurationInterface from '../../../types/render/product-configuration-interface'
 import CartWidgetDropdown from './dropdown'
 import divideIntegerBySpace from '../../../helpers/divide-integer-by-space'
-import ProductConfigurationInterface from '../../../types/render/product-configuration-interface'
-import getCost from '../../../helpers/for-product-cost/get-cost'
+import './index.less'
+import {ShoppingCartOutlined} from '@ant-design/icons/lib'
+import {Link} from 'react-router-dom'
+import {R} from '../../../navigation/routes'
 
 // todo - показывать корзину, только если навели
 const CartWidget: FC = () => {
     const [hovered, setHovered] = useState<boolean>(false),
-        // dispatch = useDispatch(),
         cart: ProductConfigurationInterface[] = useSelector(
             (state: RootStateType) => state.cart
         )
@@ -19,10 +20,8 @@ const CartWidget: FC = () => {
 
     cart.forEach(productConfiguration => {
         totalSum +=
-            getCost(
-                productConfiguration.cost,
-                productConfiguration.assocListOfSelectedProperty
-            ) * productConfiguration.amount
+            productConfiguration.costBasedOnProperties *
+            productConfiguration.amount
     })
 
     return (
@@ -31,7 +30,16 @@ const CartWidget: FC = () => {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
-            <span>Корзина</span>
+            <Link to={R.CART} style={{color: 'inherit'}}>
+                <ShoppingCartOutlined
+                    style={{
+                        fontSize: '2.25rem',
+                        display: 'block',
+                        margin: '0 auto',
+                    }}
+                />
+                <span>Корзина</span>
+            </Link>
             <CartWidgetDropdown
                 active={hovered}
                 productConfigurationList={cart}

@@ -3,8 +3,8 @@ import {productsPropertyValues} from '../models/products-property-values'
 import ProductPropertyValueInterface from '../types/models/product-property-value-interface'
 import AssocListOfProductPropertiesByTypeInterface from '../types/render/assoc-list-of-product-properties-by-type-interface'
 import ProductPropertyValueRenderInterface from '../types/render/product-property-value-render-interface'
-import findPropertyValueById from './search-in-models/find-property-value-by-id'
-import findPropertyTypeById from './search-in-models/find-property-type-by-id'
+import findPropertyValueById from './find/find-property-value-by-id'
+import findPropertyTypeById from './find/find-property-type-by-id'
 
 const getAssocListOfProductPropertiesByType = (
     product: ProductInterface

@@ -1,0 +1,10 @@
+[
+{"type":"header","version":"5.0.2","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"subbotin"},
+{"type":"table","name":"products_property-values-groups","database":"subbotin","data":
+[
+{"id":"1","name":"Все материалы"},
+{"id":"2","name":"Все цвета эмалей"}
+]
+}
+]

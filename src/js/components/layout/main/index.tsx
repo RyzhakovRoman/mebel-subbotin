@@ -8,13 +8,25 @@ import About from '../../pages/about'
 import Catalog from '../../pages/catalog/main'
 import NotFound from '../../pages/not-found'
 import Product from '../../pages/product'
+import Cart from '../../pages/cart'
+import Materials from '../../pages/materials'
+import CatalogHome from '../../pages/catalog-home'
 
 export default function Main(): ReactElement {
     return (
-        <main>
+        <main
+            style={{
+                paddingTop: '1.25rem',
+                paddingBottom: '4rem',
+                flex: '1 0 auto',
+            }}
+        >
             <Switch>
                 <Route path={R.PRODUCT}>
                     <Product />
+                </Route>
+                <Route path={R.CATALOG} exact>
+                    <CatalogHome />
                 </Route>
                 <Route
                     path={[R.CATALOG_CATEGORY_SUBCATEGORY, R.CATALOG_CATEGORY]}
@@ -29,6 +41,12 @@ export default function Main(): ReactElement {
                 </Route>
                 <Route path={R.HOME} exact>
                     <Home />
+                </Route>
+                <Route path={R.CART} exact>
+                    <Cart />
+                </Route>
+                <Route path={R.MATERIALS} exact>
+                    <Materials />
                 </Route>
                 <Route path={'/*'}>
                     <NotFound />

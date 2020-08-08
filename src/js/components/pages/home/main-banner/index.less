@@ -1,27 +1,56 @@
 @import "../../../style/default";
 
 .main-banner {
+  margin-top: -1.25rem;
   min-height: 500px;
-  background: url(../../../../../img/main-banner/bg_sale.jpg);
   background-size: cover;
   background-position-y: 67%;
+  padding-top: 2rem;
 
-  &__categories {
-    min-width: 200px;
-    margin: 4rem 0 0 0;
-    padding: 0 1rem;
-    list-style: none;
-    background-color: @white;
-    border: 1px solid @light-gray;
-    box-shadow: 0 10px 16px -12px rgba(0, 0, 0, 0.75);
+  &__heading {
+    text-align: center;
+    margin-top: 0 !important;
+    font-size: 2.8rem;
+    line-height: 1.2;
+
+    @media (max-width: @sc-xs) {
+      font-size: 1.8rem !important;
+      margin-top: 0 !important;
+    }
+  }
+
+  &__categories-cont {
+    //padding-left: 2rem;
+
+    @media (max-width: 992px) {
+      margin-top: 2rem;
+    }
+  }
+
+  &__icon {
+    width: 45% !important;
+    height: 4.5rem !important;
+    margin-right: 1rem;
+
+    @media (max-width: @sc-xxl) {
+      width: 36% !important;
+      height: 3.5rem !important;
+    }
   }
 
   &__category {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid @light-gray;
+    border-radius: 1rem;
+    font-size: @text-size-lg;
+    font-family: @font-open-sans;
 
-    &:last-child {
-      .main-banner__category-link {
-        border: 0;
-      }
+    @media (max-width: @sc-xxl) {
+      font-size: 1.125rem;
+      padding: .5rem;
     }
   }
 
@@ -36,5 +65,69 @@
     &:first-letter {
       text-transform: uppercase;
     }
+  }
+}
+
+
+.slide-panel {
+  min-height: 400px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  border-radius: 1rem;
+
+  //@linear-gradient: linear-gradient(164deg, white 0%, rgba(255, 255, 255, 0.6) 30%, rgba(255, 255, 255, 0.3) 41%, transparent 50%);
+  @linear-gradient: rgba(0,0,0,0);
+
+  &_1 {
+    background-image:
+      //@linear-gradient,
+      url('/src/img/main-banner/slide 1.jpg');
+  }
+
+  &_2 {
+    background-image:
+      //@linear-gradient,
+      url('/src/img/main-banner/slide 2.jpg');
+  }
+
+  &_3 {
+    background-image:
+      //@linear-gradient,
+      url('/src/img/main-banner/slide 3.jpg');
+  }
+
+  &__heading {
+    font-family: @font-open-sans;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: bold;
+    //color: #123e67;
+    color: #fff;
+    text-shadow: 1px 1px 6px rgba(0,0,0,.6);
+  }
+
+  @media (max-width: @sc-xxl) {
+    min-height: 340px;
+  }
+
+  @media (max-width: @sc-xl) {
+    min-height: 300px;
+  }
+
+  @media (max-width: 992px) {
+    min-height: 480px;
+  }
+
+  @media (max-width: @sc-md) {
+    min-height: 360px;
+  }
+
+  @media (max-width: @sc-xs) {
+    min-height: 280px;
+  }
+
+  @media (max-width: 450px) {
+    min-height: 220px;
   }
 }

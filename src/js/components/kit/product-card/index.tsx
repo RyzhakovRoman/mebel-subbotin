@@ -1,46 +1,53 @@
 import * as React from 'react'
 import {FC} from 'react'
-import Button from '../button'
 import './index.less'
-import {ProductInterface} from '../../../types/models/product-interface'
+import ProductInterface from '../../../types/models/product-interface'
 import {Link} from 'react-router-dom'
 import {R} from '../../../navigation/routes'
-import {useDispatch} from 'react-redux'
+import divideIntegerBySpace from '../../../helpers/divide-integer-by-space'
 // import {getMainImage} from '../../../helpers/get-main-image'
 
 interface ProductCardInterface {
-    product: ProductInterface;
+    imgSrc: string;
+    productInfo: [number, ProductInterface];
 }
 
 const ProductCard: FC<ProductCardInterface> = ({
-    product,
-    product: {name, cost, id},
+    imgSrc = '/src/img/products/0/1.jpg',
+    productInfo: [productId, product],
 }) => {
-    const dispatch = useDispatch()
     // const productUri = getMainImage(product)?.uri
     // todo - Убрать заглушку!
     return (
         <div className={'product-card'}>
-            <img
-                className={`product-card__img`}
-                src={'/src/img/products/0/1.jpg'}
-                alt={name}
-            />
+            <div className={'product-card__img-cont'}>
+                <div className={'product-card__img-wrapper'}>
+                    <img
+                        className={`product-card__img`}
+                        src={imgSrc}
+                        alt={product.name}
+                    />
+                </div>
+            </div>
             <Link
-                to={`${R.CATALOG}/product-${id}`}
+                to={`${R.CATALOG}/product-${String(productId)}`}
                 className={`product-card__name`}
             >
-                {name}
+                {product.name}
             </Link>
             <p className={'product-card__costs'}>
-                <span className={'product-card__cost'}>{cost} ₽</span>
+                <span className={'product-card__cost'}>
+                    {divideIntegerBySpace(product.cost)} ₽
+                </span>
             </p>
-            <Link
-                className={`button product-card__button`}
-                to={`${R.CATALOG}/product-${id}`}
-            >
-                Подробнее
-            </Link>
+            <div className={'product-card__actions'}>
+                <Link
+                    className={`button product-card__button`}
+                    to={`${R.CATALOG}/product-${String(productId)}`}
+                >
+                    Подробнее
+                </Link>
+            </div>
         </div>
     )
 }

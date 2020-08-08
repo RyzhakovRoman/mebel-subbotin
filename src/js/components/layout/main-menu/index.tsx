@@ -29,6 +29,11 @@ export default function MainMenu(): ReactElement {
                             О компании
                         </Link>
                     </li>
+                    <li className={'main-menu__item'}>
+                        <Link to={R.MATERIALS} className={'main-menu__link'}>
+                            Материалы
+                        </Link>
+                    </li>
                 </ul>
             </Container>
         </div>

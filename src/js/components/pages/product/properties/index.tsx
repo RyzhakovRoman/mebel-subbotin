@@ -1,16 +1,28 @@
 import * as React from 'react'
 import {FC, useCallback, useState} from 'react'
-import AssocListOfProductPropertiesByTypeInterface from '../../../../types/render/assoc-list-of-product-properties-by-type-interface'
-import {AssocListOfSelectedPropertyInterface} from '../../../../types/render/product-configuration-interface'
+import {
+    AssocListOfSelectedPropertyInterface,
+    MapOfProductPropertyType,
+} from '../../../../types'
+import Select from 'antd/lib/select'
+import 'antd/lib/select/style'
+import ColorPicker from '../../../kit/color-picker'
+import ColorInterface from '../../../../types/models/color-interface'
+import Row from 'antd/lib/grid/row'
+import Col from 'antd/lib/grid/col'
+
+const {Option} = Select
 
 interface PropertiesPropsInterface {
-    assocList: AssocListOfProductPropertiesByTypeInterface;
+    productProperties: MapOfProductPropertyType;
     onChangeValue: (assocList: AssocListOfSelectedPropertyInterface) => void;
+    onColorChange: (color: ColorInterface) => void;
 }
 
 const Properties: FC<PropertiesPropsInterface> = ({
-    assocList,
+    productProperties,
     onChangeValue,
+    onColorChange,
 }) => {
     const selectList = [],
         [
@@ -20,87 +32,87 @@ const Properties: FC<PropertiesPropsInterface> = ({
             // Формируем выбранные свойства по умолчанию
             const selectedValues: AssocListOfSelectedPropertyInterface = {}
 
-            for (const propertyTypeType in assocList) {
-                const property = assocList[propertyTypeType],
-                    defaultPropertyValue = property.list[0]
-
-                selectedValues[propertyTypeType] = {
-                    propertyTypeName: property.propertyTypeName,
-                    propertyValueId: defaultPropertyValue.id,
-                    propertyValueValue: defaultPropertyValue.value,
-                    costPercent: defaultPropertyValue.costPercent,
-                }
-            }
+            for (const [
+                propertyTypeId,
+                property,
+            ] of productProperties.entries())
+                selectedValues[
+                    propertyTypeId
+                ] = property.values.keys().next().value
 
             onChangeValue(selectedValues)
-
             return selectedValues
         }),
         handleOnChange = useCallback(
-            (propertyId: number, propertyTypeType: string) => {
-                console.log('handleOnChange ', propertyId)
-
-                const property = assocList[propertyTypeType].list.find(
-                    property => property.id === propertyId
-                )
-
+            (
+                productPropertyValueId: number | string,
+                propertyTypeId: number
+            ) => {
                 setSelectedValues(prevState => {
                     const newState = {
                         ...prevState,
-                        [propertyTypeType]: {
-                            ...prevState[propertyTypeType],
-                            propertyValueId: property.id,
-                            propertyValueValue: property.value,
-                            costPercent: property.costPercent,
-                        },
+                        [propertyTypeId]: productPropertyValueId,
                     }
-                    console.log(newState)
-                    console.log(assocList)
                     onChangeValue({...newState})
-
                     return newState
                 })
             },
             []
         )
 
-    for (const propertyTypeType in assocList) {
-        const property = assocList[propertyTypeType]
+    // Идем по свойствам и формируем селекты
+    for (const [propertyTypeId, property] of productProperties.entries()) {
+        const {values} = property,
+            options = []
+
+        property.values.entries()
+
+        for (const [
+            productPropertyValueId,
+            {value, costPercent},
+        ] of values.entries()) {
+            options.push(
+                <Option
+                    value={productPropertyValueId}
+                    key={productPropertyValueId}
+                >
+                    {value}{' '}
+                    {costPercent !== null && costPercent !== 0
+                        ? `+${String(costPercent)}%`
+                        : ''}
+                </Option>
+            )
+        }
 
         selectList.push(
-            <label
-                style={{display: 'inline-block', marginRight: '16px'}}
-                key={propertyTypeType}
-            >
-                <span style={{display: 'block', marginBottom: '.2rem'}}>
-                    {property.propertyTypeName}
-                </span>
-                <select
-                    style={{padding: '.2rem .4rem'}}
-                    name={propertyTypeType}
-                    value={selectedValues[propertyTypeType].propertyValueId}
-                    onChange={e =>
-                        handleOnChange(+e.target.value, propertyTypeType)
-                    }
-                >
-                    {property.list.map(item => {
-                        const percent =
-                            item.costPercent !== null
-                                ? `+${String(item.costPercent)}%`
-                                : ''
-
-                        return (
-                            <option value={item.id} key={item.id}>
-                                {item.value} {percent}
-                            </option>
-                        )
-                    })}
-                </select>
-            </label>
+            <Col xs={12} sm={24} md={24} lg={12} xl={8} key={propertyTypeId}>
+                <label>
+                    <span style={{display: 'block', marginBottom: '.2rem'}}>
+                        {property.name}
+                    </span>
+                    <Select
+                        style={{width: '100%'}}
+                        // name={property.type}
+                        value={selectedValues[propertyTypeId]}
+                        onChange={value =>
+                            handleOnChange(value, propertyTypeId)
+                        }
+                        size={'large'}
+                    >
+                        {options}
+                    </Select>
+                </label>
+            </Col>
         )
     }
 
-    return <div>{selectList}</div>
+    return (
+        <div>
+            <Row gutter={[{xs: 8, sm: 16}, {sm: 12}]}>{selectList}</Row>
+            <p> </p>
+            <ColorPicker onChange={onColorChange} />
+        </div>
+    )
 }
 
 export default Properties

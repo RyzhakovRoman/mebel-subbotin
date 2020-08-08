@@ -1,5 +1,4 @@
 interface ProductInterface {
-    id: number;
     categoryId: number;
     article: string;
     name: string;
@@ -8,6 +7,17 @@ interface ProductInterface {
     description: string;
     creationDate: string;
     canceledCost?: number;
+    published?: boolean;
 }
+
+export interface OldProductInterface extends ProductInterface {
+    id: number;
+}
+
+export interface AssocListOfProductsInterface {
+    [id: number]: ProductInterface;
+}
+
+export type MapOfProductType = Map<number, ProductInterface>
 
 export default ProductInterface
